@@ -227,7 +227,7 @@ Base URL: http://localhost:7860
 | **Vijay Ramdev** | ML & Model Developer |
 | **Preeti Yadav** | Event Manager & Researcher |
 | **Aayush Laddha** | Web & Backend Developer |
-| 
+| **Dinesh Patel** | ML Developer |
 
 
 ---
