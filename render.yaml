@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: bio-sentinal-api
+    env: node
+    region: oregon
+    rootDir: ai
+    healthCheckPath: /health
+    buildCommand: npm install
+    startCommand: node app.js
+    envVars:
+      - key: MONGODB_URI
+        fromDatabase:
+          name: biosentinal-mongodb
+          property: connectionString
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: NASA_FIRMS_API_KEY
+        sync: false
+
+  - type: web
+    name: bio-sentinal-ml-api
+    env: python
+    region: oregon
+    rootDir: ai
+    healthCheckPath: /health
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn gbif_ml_api:app --host 0.0.0.0 --port $PORT
+
+databases:
+  - name: biosentinal-mongodb
+    plan: free
+    region: oregon

@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@layer components {
+  /* Glassmorphism Panels */
+  .glass-panel {
+    @apply bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+  }
+
+  /* Glass Capsules (Pills) */
+  .glass-capsule {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/20 rounded-full shadow-lg;
+  }
+
+  /* Hide Scrollbar (Cross-browser) */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/* Custom Neon Glow Utilities */
+/* We keep these outside @layer components if you want them to override other styles easily, 
+   or put them inside if you want them to behave like standard utilities. */
+
+.neon-glow-green {
+  box-shadow: 0 0 15px rgba(121, 48, 81, 0.6), inset 0 0 5px rgba(253, 242, 247, 0.4);
+}
+
+.neon-glow-pink {
+  box-shadow: 0 0 15px rgba(23, 7, 82, 0.6), inset 0 0 5px rgba(253, 242, 247, 0.4);
+}
+
+.neon-glow-amber {
+  box-shadow: 0 0 15px rgba(253, 242, 247, 0.6), inset 0 0 5px rgba(253, 242, 247, 0.4);
+}
+
+/* Material Symbols Setup */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined'; /* Ensure font-family is set */
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Default size */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  
+  /* Variable Settings */
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  transition: font-variation-settings 0.2s ease;
+}
+
+.filled-icon {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

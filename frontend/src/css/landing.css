@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+/* ---------- CSS VARIABLES ---------- */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 14px;
+  --primary-glow: rgba(34, 255, 136, 0.35);
+}
+
+/* ---------- GLOBAL STYLES ---------- */
+body {
+  font-family: "Public Sans", sans-serif;
+  background: linear-gradient(135deg, #0f1115 0%, #151922 100%);
+  color: rgba(255, 255, 255, 0.9);
+  min-height: max(884px, 100dvh);
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ---------- GLASS UI ---------- */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+}
+
+.glass-button-primary {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 255, 136, 0.35) 0%,
+    rgba(34, 255, 136, 0.1) 100%
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(34, 255, 136, 0.4);
+  box-shadow: 0 0 20px rgba(34, 255, 136, 0.15);
+  border-radius: 20px;
+  color: #22ff88;
+}
+
+.glass-button-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: white;
+}
+
+.glass-button-dashboard {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.35) 0%,
+    rgba(147, 51, 234, 0.1) 100%
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.15);
+  border-radius: 20px;
+  color: #9333ea;
+}
+
+.text-frosted {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}

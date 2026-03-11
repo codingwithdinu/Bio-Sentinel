@@ -1,0 +1,10 @@
+ fastapi==0.109.0
+uvicorn==0.27.0
+requests==2.31.0
+pydantic==2.5.3
+python-multipart==0.0.6
+transformers==4.40.0
+torch==2.2.0
+Pillow==10.3.0
+numpy==1.26.4
+fastapi[all]>=0.109.0

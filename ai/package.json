@@ -1,0 +1,27 @@
+{
+  "name": "biosentinal-ai-api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@turf/turf": "^7.3.4",
+    "appwrite": "^22.0.0",
+    "axios": "^1.13.5",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^8.2.1",
+    "groq-sdk": "^0.37.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.0",
+    "multer": "^2.0.2",
+    "sharp": "^0.33.0",
+    "socket.io": "^4.8.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "appId": "7fd6ea2b",
+      "root": "frontend",
+      "dependencyInstallCommand": "npm install",
+      "webBuildCommand": "npm run build",
+      "androidPath": "android"
+    }
+  ]
+}

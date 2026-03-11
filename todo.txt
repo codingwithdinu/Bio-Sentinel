@@ -1,0 +1,12 @@
+✔ Favourable climate or environment
+✔ Do's and dont's
+✔ Methods to conserve them
+✔ Chatbot
+Nearest animal hospital
+Finading natural habitat for a species
+
+Gangetic plains Uttarakhand (start) to WB Sundarbans (end)
+Optional #Varanasi
+Optionsal #Western Ghats
+GIS Mapping of gangetic plains
+Report - Vulrenibility, endangerd, critical endanged (yellow=vulrenibility, orange=endangered-50%-70%, red=critical endangered-90%-100%)

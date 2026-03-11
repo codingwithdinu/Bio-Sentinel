@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply font-display antialiased text-white/90;
+    /* Bio-Digital Green Gradient */
+    background: radial-gradient(circle at 50% 0%, #1a2e1a 0%, #050a05 100%);
+    min-height: 100vh;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Noise Texture Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  /* Glass Components */
+  .glass-panel {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 rounded-ios;
+  }
+
+  .glass-input {
+    @apply bg-black/40 border border-white/10 rounded-ios px-4 py-3 text-white placeholder:text-white/30 transition-all duration-300 w-full;
+  }
+
+  .glass-input:focus {
+    @apply border-primary/60 outline-none ring-1 ring-primary/40 bg-black/60;
+  }
+
+  /* Text Effects */
+  .frosted-text {
+    @apply text-white/90 drop-shadow-sm;
+  }
+
+  /* Glow Effects */
+  .neon-glow {
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
+  }
+
+  .pink-glow {
+    box-shadow: 0 0 10px rgba(253, 242, 247, 0.3);
+  }
+
+  /* Custom Toggle Switch Logic */
+  .ios-toggle:checked + .ios-toggle-bg {
+    @apply bg-primary;
+  }
+}
+
+/* Material Symbols Font Settings */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}

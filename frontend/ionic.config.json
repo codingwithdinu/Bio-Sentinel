@@ -1,0 +1,8 @@
+{
+  "name": "Bio Sentinal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "root": "frontend"
+}

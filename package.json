@@ -1,0 +1,10 @@
+{
+  "name": "bio-sentinal",
+  "private": true,
+  "scripts": {
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "ionic:build": "cd frontend && npm run build",
+    "ionic:cap-copy": "cd frontend && npx cap copy"
+  }
+}
