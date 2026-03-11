@@ -229,14 +229,6 @@ vercel
 
 ---
 
-## 👥 Team
-
-| Name | Role |
-|------|------|
-| **DR. Vijay** | Lead Developer |
-| **Preeti Yadav** | Event Manager |
-| **Aayush Laddha** | Full Stack Developer |
-
 ---
 
 ## 📝 License
