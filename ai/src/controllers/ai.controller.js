@@ -8,7 +8,7 @@ dotenv.config();
 // --- 2. Initialize Groq Client ---
 const getGroqClient = () => {
     const apiKey = process.env.GROQ_API_KEY;
-    if (!apiKey || apiKey === 'gsk_your_api_key_here') {
+    if (!apiKey) {
         console.warn("⚠️ GROQ_API_KEY not set. AI features will return mock responses.");
         return null;
     }

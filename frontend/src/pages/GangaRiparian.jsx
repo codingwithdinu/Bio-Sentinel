@@ -300,9 +300,9 @@ const GangaRiparian = () => {
 
     return (
         <div className="text-white/90 font-sans min-h-screen bg-bg-gradient-start">
-            <div className="max-w-md mx-auto min-h-screen relative z-10 pb-32 sm:max-w-2xl md:max-w-4xl">
+            <div className="max-w-screen-xl mx-auto min-h-screen relative z-10 pb-32">
                 {/* Header */}
-                <div className="flex items-center p-4 sm:p-6 justify-between">
+                <div className="max-w-screen-xl mx-auto px-4 md:px-8 flex items-center p-4 sm:p-6 justify-between">
                     <div className="flex-1 flex flex-col items-center">
                         <h2 className="frosted-text text-base sm:text-lg font-bold tracking-tight">Bio Sentinel</h2>
                         <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-neon-green font-bold">Ganga Riparian</span>
@@ -310,7 +310,7 @@ const GangaRiparian = () => {
                 </div>
 
                 {/* Progress Steps */}
-                <div className="px-4 sm:px-6 mb-4">
+                <div className="px-4 md:px-8 mb-4">
                     <div className="flex items-center justify-between max-w-xs mx-auto">
                         {[1, 2, 3].map(s => (
                             <div key={s} className={`flex items-center ${s < 3 ? 'flex-1' : ''}`}>
@@ -330,8 +330,14 @@ const GangaRiparian = () => {
                     </div>
                 </div>
 
+                {/* Two-column: map+controls left, steps+results right */}
+                <div className="px-4 md:px-8 flex flex-col gap-4 lg:grid lg:grid-cols-[1fr_380px] lg:gap-6 lg:items-start">
+
+                {/* LEFT: Map + map controls */}
+                <div className="flex flex-col gap-4 lg:sticky lg:top-4">
+
                 {/* Buffer Radius Selector */}
-                <div className="px-4 sm:px-6 mb-2">
+                <div className="mb-2">
                     <h3 className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-2 ml-1">Buffer Radius</h3>
                     <div className="flex gap-2">
                         {[5, 10, 25, 50].map((radius) => (
@@ -351,7 +357,7 @@ const GangaRiparian = () => {
                 </div>
 
                 {/* Map Controls */}
-                <div className="px-4 sm:px-6 mb-2 flex gap-2 items-center flex-wrap">
+                <div className="mb-2 flex gap-2 items-center flex-wrap">
                     <label className="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" checked={showBuffer} onChange={(e) => setShowBuffer(e.target.checked)} className="w-4 h-4 accent-neon-green" />
                         <span className="text-xs text-white/60">Buffer Zone</span>
@@ -367,8 +373,8 @@ const GangaRiparian = () => {
                 </div>
 
                 {/* Map Section */}
-                <div className="px-4 sm:px-6 mb-4">
-                    <div className="relative w-full h-56 sm:h-72 md:h-80 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10">
+                <div className="mb-4 lg:mb-0">
+                    <div className="relative w-full h-56 sm:h-72 md:h-80 lg:h-[calc(100vh-12rem)] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10">
                         <MapContainer center={[25.5, 83.0]} zoom={7} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>
                             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
                             <RecenterMap lat={location.lat} lon={location.lon} />
@@ -495,9 +501,14 @@ const GangaRiparian = () => {
                     </div>
                 </div>
 
+                </div>{/* end left col */}
+
+                {/* RIGHT: Steps + results */}
+                <div className="flex flex-col gap-4">
+
                 {/* Analyze Button */}
                 {!step || step === 1 ? (
-                    <div className="px-4 sm:px-6 mb-4">
+                    <div className="mb-4">
                         <button
                             onClick={fetchSpeciesData}
                             disabled={loading}
@@ -510,7 +521,7 @@ const GangaRiparian = () => {
 
                 {/* Species Data Summary */}
                 {speciesData && step === 1 && (
-                    <div className="px-4 sm:px-6 mb-4">
+                    <div className="mb-4">
                         <div className="glass-panel p-4 rounded-2xl">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-xs font-bold uppercase tracking-wider text-white/60">Satellite Biodiversity</span>
@@ -526,7 +537,7 @@ const GangaRiparian = () => {
 
                 {/* Selected Marker Details */}
                 {selectedMarker && (
-                    <div className="px-4 sm:px-6 mb-4">
+                    <div className="mb-4">
                         <div className="glass-panel p-3 rounded-xl border border-neon-green/30">
                             <div className="flex items-center justify-between mb-1">
                                 <h4 className="font-bold text-xs">Species Details</h4>
@@ -551,7 +562,7 @@ const GangaRiparian = () => {
 
                 {/* Step 1: Select Stretch */}
                 {step === 1 && (
-                    <div className="px-4 sm:px-6">
+                    <div>
                         <p className="text-xs sm:text-sm text-white/60 text-center mb-3">
                             Tap a Ganga stretch to analyze water quality
                         </p>
@@ -575,7 +586,7 @@ const GangaRiparian = () => {
 
                 {/* Step 2: Upload Photo */}
                 {step === 2 && (
-                    <div className="px-4 sm:px-6 space-y-3">
+                    <div className="space-y-3">
                         <div className="glass-panel p-3 rounded-xl border-l-4 border-neon-green">
                             <p className="text-[9px] text-white/60 mb-0.5">Selected Stretch</p>
                             <p className="text-sm font-bold text-neon-green">{selectedStretch?.name}</p>
@@ -625,7 +636,7 @@ const GangaRiparian = () => {
 
                 {/* Step 3: Results */}
                 {step === 3 && analysisResult && (
-                    <div className="px-4 sm:px-6 space-y-3">
+                    <div className="space-y-3">
                         <div className={`glass-panel p-3 rounded-xl border ${getStatusColor(analysisResult.waterAnalysis?.waterStatus)}`}>
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-[9px] font-bold uppercase tracking-wider">Water Status</span>
@@ -678,6 +689,8 @@ const GangaRiparian = () => {
                         </div>
                     </div>
                 )}
+                </div>{/* end right col */}
+                </div>{/* end two-col grid */}
             </div>
             <Nav />
         </div>

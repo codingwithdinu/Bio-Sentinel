@@ -3,6 +3,7 @@ import './App.css';
 import { App as CapApp } from '@capacitor/app';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import ThemeToggle from './components/ThemeToggle';
 
 // Page Imports
 import Landing from './pages/Landing';
@@ -111,6 +112,7 @@ function App() {
 
     return (
         <div className="App">
+            <ThemeToggle />
             <AuthProvider>
                 <Router>
                     <Routes>

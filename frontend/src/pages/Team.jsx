@@ -63,7 +63,7 @@ const Team = () => {
         </div>
       </div>
 
-      <main className="max-w-md mx-auto px-5 py-6 flex flex-col gap-6">
+      <main className="max-w-screen-xl mx-auto px-4 md:px-8 py-6 flex flex-col gap-6">
         {/* Team Intro */}
         <section className="glass-panel rounded-3xl p-6">
           <h1 className="text-2xl font-bold text-white mb-2">Our Team</h1>
@@ -73,7 +73,7 @@ const Team = () => {
         </section>
 
         {/* Team Members Grid */}
-        <section className="flex flex-col gap-4">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {teamMembers.map((member, index) => (
             <div 
               key={index}

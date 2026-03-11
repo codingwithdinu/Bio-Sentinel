@@ -81,12 +81,12 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// --- Database Connection ---
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/biosentinel';
+// // --- Database Connection ---
+// const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/biosentinel';
 
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('✅ Connected to MongoDB'))
-    .catch(err => console.error('❌ MongoDB Connection Error:', err));
+// mongoose.connect(MONGODB_URI)
+//     .then(() => console.log('✅ Connected to MongoDB'))
+//     .catch(err => console.error('❌ MongoDB Connection Error:', err));
 
 // --- Initialize Groq Client ---
 const client = new Groq({

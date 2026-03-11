@@ -5,14 +5,16 @@ import {
     signOut, 
     onAuthStateChanged,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    updateProfile as updateFirebaseProfile
 } from 'firebase/auth';
 import { auth } from '../firebase'; // Update this path to where your initialized Firebase auth lives
 
 // Assuming you still have these utility functions for your business logic
 import { 
     isProfileComplete as checkProfileComplete,
-    updateUserProfile, // You'll likely update this to write to Firestore
+    updateUserProfile,
+    getUserProfile,
     getRoleSpecificData,
     getDashboardPath,
     getRoleEmoji,
@@ -35,18 +37,22 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
-                // NOTE: Firebase Auth only returns basic data (uid, email, displayName).
-                // If you have roles or custom data, you will fetch it from your database here.
-                // Example: const dbUser = await fetchUserFromFirestore(firebaseUser.uid);
-                // const mergedUser = { ...firebaseUser, ...dbUser };
-                
-                setUser(firebaseUser);
-                setProfileComplete(checkProfileComplete(firebaseUser));
+                // Fetch custom profile from Firestore and merge with Firebase Auth user
+                const firestoreProfile = await getUserProfile(firebaseUser.uid);
+                const mergedUser = {
+                    uid: firebaseUser.uid,
+                    email: firebaseUser.email,
+                    displayName: firebaseUser.displayName,
+                    photoURL: firebaseUser.photoURL,
+                    ...(firestoreProfile || {})
+                };
+                setUser(mergedUser);
+                setProfileComplete(checkProfileComplete(mergedUser));
             } else {
                 setUser(null);
                 setProfileComplete(false);
             }
-            setLoading(false); // Stop the loading spinner once we know the auth state
+            setLoading(false);
         });
 
         // Cleanup subscription on unmount
@@ -65,8 +71,9 @@ export const AuthProvider = ({ children }) => {
         
         signUpWithEmail: async (name, email, password) => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            // Firebase doesn't take 'name' in the standard creation function.
-            // You can update the Firebase profile or save the name to your database here.
+            if (name) {
+                await updateFirebaseProfile(userCredential.user, { displayName: name });
+            }
             return userCredential.user;
         },
 

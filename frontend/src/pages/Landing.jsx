@@ -9,7 +9,7 @@ const Landing = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <main className="px-4 pb-32">
+      <main className="max-w-screen-xl mx-auto px-4 pb-32">
         <section className="mt-4 relative group">
           <div className="glass-panel overflow-hidden min-h-125 relative flex flex-col justify-end p-8 border-white/10">
             <div className="absolute inset-0 z-[-1]">
@@ -106,7 +106,7 @@ const Landing = () => {
         </section>
         <section className="mt-12">
           <h3 className="text-white font-bold px-2 mb-6 text-xl">Operational Modules</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="glass-panel p-5 border-white/5 flex flex-col gap-3">
               <span className="material-symbols-outlined text-primary-green text-2xl">science</span>
               <h5 className="text-white font-bold text-sm leading-tight">Research Core</h5>

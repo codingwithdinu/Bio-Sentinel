@@ -1,13 +1,12 @@
-import * as turf from '@turf/turf';
-import fs from 'fs';
-import path from 'path';
-import axios from 'axios';
-import { fileURLToPath } from 'url';
+import * as turf from "@turf/turf";
+import fs from "fs";
+import path from "path";
+import axios from "axios";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Ganga River Buffer Zone Analysis Service
 class GangaBufferService {
     constructor() {
         this.gangaRiver = null;
@@ -17,124 +16,90 @@ class GangaBufferService {
 
     loadGangaGeometry() {
         try {
-            const gangaPath = path.join(__dirname, '../../data/ganga_river.geojson');
-            const gangaData = JSON.parse(fs.readFileSync(gangaPath, 'utf8'));
+            const gangaPath = path.join(__dirname, "../../data/ganga_river.geojson");
+            const gangaData = JSON.parse(fs.readFileSync(gangaPath, "utf8"));
             this.gangaRiver = gangaData.features[0];
-            console.log('Ganga River geometry loaded successfully');
+            console.log("Ganga River geometry loaded successfully");
         } catch (error) {
-            console.error('Error loading Ganga geometry:', error);
-            // Create fallback line if file not found
+            console.error("Error loading Ganga geometry:", error);
             this.createFallbackGangaGeometry();
         }
     }
 
     createFallbackGangaGeometry() {
-        // Simplified Ganga River coordinates (source to mouth)
         const gangaCoordinates = [
-            [78.4968, 30.9878],  // Source (Gangotri)
-            [79.5, 30.0],
-            [80.5, 29.0],
-            [81.5, 28.0],
-            [82.5, 27.0],
-            [83.5, 26.0],
-            [84.5, 25.5],
-            [85.5, 25.0],
-            [86.5, 24.5],
-            [87.5, 24.0],
-            [88.5, 23.5],
-            [89.5, 23.0],
-            [90.5, 22.5],
-            [91.5, 22.0],
-            [92.5, 21.5],
-            [93.5, 21.0],
-            [94.5, 20.5],
-            [95.5, 20.0],
-            [96.5, 19.5],
-            [97.5, 19.0],
-            [98.5, 18.5],
-            [99.5, 18.0],
-            [100.5, 17.5],
-            [101.5, 17.0],
-            [102.5, 16.5],
-            [103.5, 16.0],
-            [104.5, 15.5],
-            [105.5, 15.0],
-            [106.5, 14.5],
-            [107.5, 14.0],
-            [108.5, 13.5],
-            [109.5, 13.0],
-            [110.5, 12.5],
-            [111.5, 12.0],
-            [112.5, 11.5],
-            [113.5, 11.0],
-            [114.25, 6.8981]  // Sundarbans delta
+            [78.4968, 30.9878],
+            [79.5, 30.2],
+            [80.5, 29.6],
+            [81.5, 28.8],
+            [82.5, 28.0],
+            [83.0, 25.4],
+            [84.0, 25.6],
+            [85.1, 25.6],
+            [86.5, 25.3],
+            [87.9, 24.8],
+            [88.35, 22.57],
+            [88.06, 21.63]
         ];
 
         this.gangaRiver = {
-            type: 'Feature',
-            properties: {
-                name: 'Ganga River (Fallback)',
-                source: 'Simplified Coordinates'
-            },
+            type: "Feature",
+            properties: { name: "Ganga River (Fallback)" },
             geometry: {
-                type: 'LineString',
+                type: "LineString",
                 coordinates: gangaCoordinates
             }
         };
     }
 
     createBuffer(radiusKm) {
-        if (this.buffers[radiusKm]) {
-            return this.buffers[radiusKm];
-        }
+        if (this.buffers[radiusKm]) return this.buffers[radiusKm];
 
         try {
             const line = turf.lineString(this.gangaRiver.geometry.coordinates);
-            const buffered = turf.buffer(line, radiusKm, { units: 'kilometers' });
+            const buffered = turf.buffer(line, radiusKm, { units: "kilometers" });
             this.buffers[radiusKm] = buffered;
             return buffered;
         } catch (error) {
-            console.error(`Error creating ${radiusKm}km buffer:`, error);
+            console.error("Buffer error:", error);
             return null;
         }
     }
 
     async fetchGBIFSpecies(bufferPolygon, limit = 100) {
         try {
-            // Get bounding box of buffer for GBIF query
             const bbox = turf.bbox(bufferPolygon);
             const [minLon, minLat, maxLon, maxLat] = bbox;
 
-            // GBIF occurrence search with bounding box
-            const gbifUrl = 'https://api.gbif.org/v1/occurrence/search';
-            
-            // Correct GBIF API params format
-            const params = {
-                geometry: `POLYGON((${minLon} ${minLat}, ${maxLon} ${minLat}, ${maxLon} ${maxLat}, ${minLon} ${maxLat}, ${minLon} ${minLat}))`,
-                limit: limit,
-                hasCoordinate: true,
-                basisOfRecord: 'HUMAN_OBSERVATION'
-            };
+            const response = await axios.get(
+                "https://api.gbif.org/v1/occurrence/search",
+                {
+                    params: {
+                        decimalLatitude: `${minLat},${maxLat}`,
+                        decimalLongitude: `${minLon},${maxLon}`,
+                        hasCoordinate: true,
+                        limit
+                    }
+                }
+            );
 
-            const response = await axios.get(gbifUrl, { params });
-
-            if (response.data && response.data.results) {
-                // Transform GBIF data to our format
-                return response.data.results.map(record => ({
-                    scientificName: record.scientificName,
-                    commonName: record.vernacularName || record.scientificName,
-                    decimalLatitude: record.decimalLatitude,
-                    decimalLongitude: record.decimalLongitude,
-                    iucnStatus: record.iucnRedListCategory || 'UNKNOWN',
-                    individualCount: record.individualCount || 1,
-                    basisOfRecord: record.basisOfRecord,
-                    gbifID: record.gbifId
-                }));
+            if (!response.data?.results) {
+                return this.getMockSpeciesData(bufferPolygon);
             }
 
-            return this.getMockSpeciesData(bufferPolygon);
-        } catch (error) {
-            // Fall back to mock data on error
+            const species = response.data.results.map((r) => ({
+                scientificName: r.scientificName,
+                commonName: r.vernacularName || r.scientificName,
+                decimalLatitude: r.decimalLatitude,
+                decimalLongitude: r.decimalLongitude,
+                iucnStatus: r.iucnRedListCategory || "UNKNOWN",
+                individualCount: r.individualCount || 1
+            }));
+
+            return this.filterSpeciesInBuffer(species, bufferPolygon);
+
+        } catch (err) {
+            console.log("GBIF API failed → using mock data");
             return this.getMockSpeciesData(bufferPolygon);
         }
     }
@@ -280,183 +245,143 @@ class GangaBufferService {
             }
         ];
 
-        // Filter species that are actually within the buffer
-        // All mock species are real Ganga basin species, so include them
-        const filteredSpecies = mockSpecies;
-
-        // Add more random species to ensure all risk colors are represented
         const randomSpecies = [];
-        const riskTypes = ['LEAST_CONCERN', 'VULNERABLE', 'ENDANGERED', 'CRITICALLY_ENDANGERED'];
-        
-        // Ensure we have at least 5 of each risk level
+        const riskTypes = ["LEAST_CONCERN","VULNERABLE","ENDANGERED","CRITICALLY_ENDANGERED"];
+
+        const bbox = turf.bbox(bufferPolygon);
+
         for (let i = 0; i < 30; i++) {
-            const bbox = turf.bbox(bufferPolygon);
-            const randomPoint = turf.randomPoint(1, { bbox: bbox });
+
+            const randomPoint = turf.randomPoint(1, { bbox });
             const coords = randomPoint.features[0].geometry.coordinates;
-            
-            // Distribute risk levels evenly
-            const riskIndex = i % 4;
-            
+
             randomSpecies.push({
                 scientificName: `Species ${i}`,
-                commonName: `Common Name ${i}`,
+                commonName: `Common ${i}`,
                 decimalLatitude: coords[1],
                 decimalLongitude: coords[0],
-                iucnStatus: riskTypes[riskIndex],
-                individualCount: Math.floor(Math.random() * 10) + 1,
-                basisOfRecord: 'HUMAN_OBSERVATION'
+                iucnStatus: riskTypes[i % 4],
+                individualCount: Math.floor(Math.random() * 5) + 1
             });
         }
 
-        return [...filteredSpecies, ...randomSpecies];
+        return [...mockSpecies, ...randomSpecies];
     }
 
-    classifyRisk(iucnStatus) {
-        const status = iucnStatus?.toUpperCase() || 'UNKNOWN';
-        
-        // Map IUCN Red List codes to risk levels
-        // CR = Critically Endangered -> RED
-        // EN = Endangered -> BLUE
-        // VU = Vulnerable -> YELLOW
-        // NT = Near Threatened -> YELLOW
-        // LC = Least Concern -> GREEN
-        // DD = Data Deficient -> GREEN
-        // EX = Extinct -> RED
-        // EW = Extinct in Wild -> RED
-        
-        switch (status) {
-            case 'CR':
-            case 'CRITICALLY_ENDANGERED':
-            case 'EX':
-            case 'EW':
-                return 'RED';
-            case 'EN':
-            case 'ENDANGERED':
-                return 'BLUE';
-            case 'VU':
-            case 'VULNERABLE':
-            case 'NT':
-            case 'NEAR_THREATENED':
-                return 'YELLOW';
-            case 'LC':
-            case 'DD':
-            case 'LEAST_CONCERN':
-            case 'DATA_DEFICIENT':
-                return 'GREEN';
+    classifyRisk(status) {
+        const s = status?.toUpperCase();
+
+        switch (s) {
+            case "CR":
+            case "CRITICALLY_ENDANGERED":
+                return "RED";
+
+            case "EN":
+            case "ENDANGERED":
+                return "BLUE";
+
+            case "VU":
+            case "VULNERABLE":
+                return "YELLOW";
+
             default:
-                return 'GREEN';
+                return "GREEN";
         }
     }
 
     filterSpeciesInBuffer(species, bufferPolygon) {
-        return species.filter(speciesRecord => {
-            if (!speciesRecord.decimalLatitude || !speciesRecord.decimalLongitude) {
-                return false;
-            }
 
-            try {
-                const point = turf.point([
-                    speciesRecord.decimalLongitude,
-                    speciesRecord.decimalLatitude
-                ]);
-                return turf.booleanPointInPolygon(point, bufferPolygon);
-            } catch (error) {
-                console.warn('Error checking point in polygon:', error);
-                return false;
-            }
+        return species.filter((s) => {
+
+            if (!s.decimalLatitude || !s.decimalLongitude) return false;
+
+            const point = turf.point([
+                s.decimalLongitude,
+                s.decimalLatitude
+            ]);
+
+            return turf.booleanPointInPolygon(point, bufferPolygon);
+
         });
     }
 
-    convertToGeoJSON(species, buffer, radiusKm) {
-        const features = species.map(speciesRecord => {
-            const risk = this.classifyRisk(speciesRecord.iucnStatus);
-            
+    convertToGeoJSON(species) {
+
+        const features = species.map((s) => {
+
+            const risk = this.classifyRisk(s.iucnStatus);
+
             return {
-                type: 'Feature',
+                type: "Feature",
                 properties: {
-                    id: speciesRecord.gbifID || Math.random().toString(36).substr(2, 9),
-                    scientificName: speciesRecord.scientificName,
-                    commonName: speciesRecord.commonName || speciesRecord.scientificName,
-                    iucnStatus: speciesRecord.iucnStatus || 'UNKNOWN',
+                    scientificName: s.scientificName,
+                    commonName: s.commonName,
                     riskLevel: risk,
-                    color: risk,
-                    individualCount: speciesRecord.individualCount || 1,
-                    basisOfRecord: speciesRecord.basisOfRecord
+                    individualCount: s.individualCount
                 },
                 geometry: {
-                    type: 'Point',
+                    type: "Point",
                     coordinates: [
-                        speciesRecord.decimalLongitude,
-                        speciesRecord.decimalLatitude
+                        s.decimalLongitude,
+                        s.decimalLatitude
                     ]
                 }
             };
         });
 
         return {
-            type: 'FeatureCollection',
+            type: "FeatureCollection",
             features
         };
     }
 
-    async analyzeBufferZone(radiusKm = 25, majorSpeciesOnly = false) {
+    async analyzeBufferZone(radiusKm = 5) {
+
         try {
-            // Step 1: Create buffer zone
+
             const buffer = this.createBuffer(radiusKm);
-            if (!buffer) {
-                throw new Error('Failed to create buffer zone');
-            }
 
-            // Step 2: Fetch GBIF species (or mock data if API fails)
-            const allSpecies = await this.fetchGBIFSpecies(buffer);
-            
-            // Step 3: Use all species (mock data already within Ganga basin)
-            let filteredSpecies = allSpecies;
+            if (!buffer) throw new Error("Buffer creation failed");
 
-            // Step 4: Filter major species if requested
-            if (majorSpeciesOnly) {
-                const prioritySpecies = ['dolphin', 'gharial', 'tiger', 'elephant', 'crocodile', 'turtle'];
-                filteredSpecies = filteredSpecies.filter(s => 
-                    prioritySpecies.some(p => s.commonName?.toLowerCase().includes(p) || 
-                                             s.scientificName?.toLowerCase().includes(p)) ||
-                    s.individualCount > 5
-                );
-            }
+            const species = await this.fetchGBIFSpecies(buffer);
 
-            // Step 5: Calculate risk statistics
+            const geojson = this.convertToGeoJSON(species);
+
             const riskStats = {
-                total: filteredSpecies.length,
+                total: species.length,
                 red: 0,
                 blue: 0,
                 yellow: 0,
                 green: 0
             };
 
-            filteredSpecies.forEach(s => {
-                const risk = this.classifyRisk(s.iucnStatus);
-                riskStats[risk.toLowerCase()]++;
-            });
+            species.forEach((s) => {
 
-            // Step 6: Convert to GeoJSON
-            const geojson = this.convertToGeoJSON(filteredSpecies, buffer, radiusKm);
+                const r = this.classifyRisk(s.iucnStatus);
+                riskStats[r.toLowerCase()]++;
+
+            });
 
             return {
                 success: true,
                 buffer: {
                     radiusKm,
-                    areaKm2: turf.area(buffer) / 1000000,
+                    areaKm2: turf.area(buffer) / 1_000_000,
                     geojson: buffer
                 },
                 species: {
                     total: riskStats.total,
                     breakdown: riskStats,
-                    data: filteredSpecies
+                    data: species
                 },
                 geojson,
                 timestamp: new Date().toISOString()
             };
+
         } catch (error) {
-            console.error('Buffer analysis error:', error);
+
+            console.error("Buffer analysis error:", error);
+
             return {
                 success: false,
                 error: error.message
@@ -465,8 +390,5 @@ class GangaBufferService {
     }
 }
 
-// Export singleton
 export const gangaBufferService = new GangaBufferService();
-
-// Export class for testing
 export { GangaBufferService };

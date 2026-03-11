@@ -38,19 +38,20 @@ const ResearcherDashboard = () => {
     return (
         <div className="min-h-screen pb-28 font-sans selection:bg-primary/30">
             {/* Header */}
-            <div className="flex items-center pt-6 justify-between">
+            <div className="max-w-screen-xl mx-auto px-4 md:px-8 flex items-center pt-6 justify-between">
                 <div className="flex-1 flex flex-col items-center">
                     <h2 className="frosted-text text-lg font-bold tracking-tight">Researcher Dashboard</h2>
                     <span className="text-[9px] uppercase tracking-[0.2em] text-neon-green font-bold">Bio Sentinel</span>
                 </div>
-                <div className="text-2xl mr-4">
+                <div className="text-2xl">
                     {getRoleEmoji(userRole)}
                 </div>
             </div>
             
-            <main className="max-w-md mx-auto px-5 py-6 flex flex-col gap-8">
-                {/* Profile Card */}
-                <section className="glass-panel rounded-3xl p-6 relative overflow-hidden">
+            <main className="max-w-screen-xl mx-auto px-4 md:px-8 py-6">
+                <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[360px_1fr] lg:gap-8 lg:items-start">
+                {/* Left col — Profile Card */}
+                <section className="glass-panel rounded-3xl p-6 relative overflow-hidden lg:sticky lg:top-4">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl -mr-16 -mt-16"></div>
                     <div className="flex items-center gap-5 mb-6">
                         <div className="relative">
@@ -85,6 +86,9 @@ const ResearcherDashboard = () => {
                         ))}
                     </div>
                 </section>
+
+                {/* Right col — remaining content */}
+                <div className="flex flex-col gap-8">
 
                 {/* Pending Validations */}
                 <section>
@@ -189,6 +193,9 @@ const ResearcherDashboard = () => {
                     </button>
                 </section>
                 <LogoutButton />
+
+                </div>{/* end right col */}
+                </div>{/* end grid */}
             </main>
 
             <Nav />

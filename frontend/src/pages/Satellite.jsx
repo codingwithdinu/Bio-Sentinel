@@ -26,6 +26,7 @@ const GangaSatellite = () => {
     const [analysisData, setAnalysisData] = useState(null);
     const [gangaBuffer, setGangaBuffer] = useState(null);
     const [selectedMarker, setSelectedMarker] = useState(null);
+    const [error, setError] = useState(null);
 
     // Map center on Ganga
     const mapCenter = [25.5, 83.0];
@@ -34,7 +35,9 @@ const GangaSatellite = () => {
     // Fetch Ganga buffer zone
     const fetchGangaBuffer = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_GBIF_API_URL}/satellite/ganga/buffer?radius=${bufferRadius}`);
+            const apiUrl = import.meta.env.VITE_GBIF_API_URL;
+            if (!apiUrl) return;
+            const response = await fetch(`${apiUrl}/satellite/ganga/buffer?radius=${bufferRadius}`);
             if (response.ok) {
                 const data = await response.json();
                 setGangaBuffer(data.buffer);
@@ -47,8 +50,13 @@ const GangaSatellite = () => {
     // Run Ganga buffer analysis
     const runAnalysis = async () => {
         setLoading(true);
+        setError(null);
         try {
-            const response = await fetch(`${import.meta.env.VITE_GBIF_API_URL}/satellite/ganga/analyze`, {
+            const apiUrl = import.meta.env.VITE_GBIF_API_URL;
+            if (!apiUrl) {
+                throw new Error('API URL not configured. Check VITE_GBIF_API_URL in .env');
+            }
+            const response = await fetch(`${apiUrl}/satellite/ganga/analyze`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -57,13 +65,18 @@ const GangaSatellite = () => {
                 })
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                setAnalysisData(data);
-                setGangaBuffer(data.buffer?.geojson || null);
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
             }
-        } catch (error) {
-            console.error('Error running Ganga analysis:', error);
+            const data = await response.json();
+            if (data.success === false) {
+                throw new Error(data.error || 'Analysis failed');
+            }
+            setAnalysisData(data);
+            setGangaBuffer(data.buffer?.geojson || null);
+        } catch (err) {
+            console.error('Error running Ganga analysis:', err);
+            setError(err.message || 'Failed to connect to server');
         }
         setLoading(false);
     };
@@ -119,9 +132,9 @@ const GangaSatellite = () => {
                             <h4 className="font-bold text-sm">{commonName || scientificName}</h4>
                             <p className="text-xs text-gray-600">{scientificName}</p>
                             <div className="mt-1">
-                                <span 
+                                <span
                                     className="inline-block px-2 py-0.5 text-xs rounded-full"
-                                    style={{ 
+                                    style={{
                                         backgroundColor: RISK_COLORS[riskLevel] || RISK_COLORS.GREEN,
                                         color: riskLevel === 'YELLOW' ? '#000' : '#fff'
                                     }}
@@ -142,7 +155,7 @@ const GangaSatellite = () => {
     // Get risk summary
     const getRiskSummary = () => {
         if (!analysisData?.species?.breakdown) return null;
-        
+
         const { breakdown } = analysisData.species;
 
         return (
@@ -169,216 +182,253 @@ const GangaSatellite = () => {
 
     return (
         <div className="text-white/90 font-sans min-h-screen bg-bg-gradient-start">
-            <div className="max-w-md mx-auto min-h-screen relative z-10 pb-32">
-                
+            <div className="max-w-screen-xl mx-auto min-h-screen relative z-10 pb-32">
+
                 {/* Header */}
-                <div className="flex items-center p-6 justify-between">
+                <div className="max-w-screen-xl mx-auto px-4 md:px-8 flex items-center p-6 justify-between">
                     <div className="flex-1 flex flex-col items-center">
                         <h2 className="frosted-text text-lg font-bold tracking-tight">Bio Sentinal</h2>
                         <span className="text-[9px] uppercase tracking-[0.2em] text-neon-green font-bold">Ganga Buffer Zone</span>
                     </div>
                 </div>
 
-                {/* Map */}
-                <section className="px-5 mb-4">
-                    <div className="relative w-full h-80 rounded-3xl overflow-hidden border border-white/10 glass-panel">
-                        <MapContainer
-                            center={mapCenter}
-                            zoom={mapZoom}
-                            style={{ height: "100%", width: "100%" }}
-                            zoomControl={true}
-                        >
-                            <TileLayer
-                                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                            />
-                            {renderBufferLayer()}
-                            {renderSpeciesMarkers()}
-                        </MapContainer>
-                        
-                        {/* Map Legend */}
-                        <div className="absolute bottom-3 left-3 bg-black/90 backdrop-blur-md p-3 rounded-xl z-[400] border border-white/20 shadow-lg">
-                            <p className="text-xs font-bold text-white/90 mb-2 uppercase tracking-wider">Risk Level</p>
-                            <div className="space-y-1.5">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
-                                    <span className="text-xs text-white/80 font-medium">Critical (CR)</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-                                    <span className="text-xs text-white/80 font-medium">Endangered (EN)</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.8)]"></div>
-                                    <span className="text-xs text-white/80 font-medium">Vulnerable (VU)</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="w-4 h-4 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
-                                    <span className="text-xs text-white/80 font-medium">Stable (LC)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                {/* Two-column layout on desktop */}
+                <div className="px-4 md:px-8 flex flex-col gap-4 lg:grid lg:grid-cols-[1fr_380px] lg:gap-6 lg:items-start">
 
-                {/* Buffer Radius Selector */}
-                <section className="px-5 mb-4">
-                    <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
-                        Buffer Radius
-                    </h3>
-                    <div className="flex gap-2">
-                        {[5, 10, 25, 50].map((radius) => (
-                            <button
-                                key={radius}
-                                onClick={() => setBufferRadius(radius)}
-                                className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${
-                                    bufferRadius === radius
-                                        ? 'bg-neon-green text-black'
-                                        : 'glass-panel text-white/70 hover:bg-white/10'
-                                }`}
+                    {/* Map — left col on desktop */}
+                    <section className="mb-4 lg:mb-0 lg:sticky lg:top-4">
+                        <div className="relative w-full h-80 md:h-[500px] lg:h-[calc(100vh-10rem)] rounded-3xl overflow-hidden border border-white/10 glass-panel">
+                            <MapContainer
+                                center={mapCenter}
+                                zoom={mapZoom}
+                                style={{ height: "100%", width: "100%" }}
+                                zoomControl={true}
                             >
-                                {radius} km
-                            </button>
-                        ))}
-                    </div>
-                </section>
+                                <TileLayer
+                                    url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                                />
+                                {renderBufferLayer()}
+                                {renderSpeciesMarkers()}
+                            </MapContainer>
 
-                {/* Analysis Options */}
-                <section className="px-5 mb-4">
-                    <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
-                        Analysis Options
-                    </h3>
-                    <div className="space-y-2">
-                        <label className="glass-panel p-4 rounded-2xl flex items-center justify-between cursor-pointer">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-neon-green">visibility</span>
-                                <div>
-                                    <span className="text-sm font-bold">Show Buffer Zone</span>
-                                    <p className="text-[10px] text-white/40">Display Ganga buffer area</p>
-                                </div>
-                            </div>
-                            <input
-                                type="checkbox"
-                                checked={showGangaLayer}
-                                onChange={(e) => setShowGangaLayer(e.target.checked)}
-                                className="w-5 h-5 accent-neon-green"
-                            />
-                        </label>
-
-                        <label className="glass-panel p-4 rounded-2xl flex items-center justify-between cursor-pointer">
-                            <div className="flex items-center gap-3">
-                                <span className="material-symbols-outlined text-yellow-400">star</span>
-                                <div>
-                                    <span className="text-sm font-bold">Major Species Only</span>
-                                    <p className="text-[10px] text-white/40">Dolphin, Gharial, Tiger, etc.</p>
-                                </div>
-                            </div>
-                            <input
-                                type="checkbox"
-                                checked={majorSpeciesOnly}
-                                onChange={(e) => setMajorSpeciesOnly(e.target.checked)}
-                                className="w-5 h-5 accent-neon-green"
-                            />
-                        </label>
-                    </div>
-                </section>
-
-                {/* Run Analysis Button */}
-                <section className="px-5 mb-4">
-                    <button
-                        onClick={runAnalysis}
-                        disabled={loading}
-                        className="w-full glass-panel bg-neon-green hover:bg-neon-green/90 text-black font-black h-14 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-widest text-sm rounded-2xl shadow-[0_0_20px_rgba(57,255,20,0.4)] disabled:opacity-50"
-                    >
-                        {loading ? (
-                            <>
-                                <span className="material-symbols-outlined animate-spin">sync</span>
-                                ANALYZING...
-                            </>
-                        ) : (
-                            <>
-                                <span className="material-symbols-outlined">science</span>
-                                Analyze Biodiversity
-                            </>
-                        )}
-                    </button>
-                </section>
-
-                {/* Analysis Results */}
-                {analysisData && (
-                    <section className="px-5 mb-4">
-                        <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
-                            Biodiversity Analysis
-                        </h3>
-                        
-                        {/* Summary */}
-                        <div className="glass-panel p-4 rounded-2xl mb-3 border-white/10">
-                            <div className="flex items-center justify-between mb-3">
-                                <span className="text-sm font-bold">Species Found</span>
-                                <span className="text-2xl font-black text-neon-green">
-                                    {analysisData.species?.total || 0}
-                                </span>
-                            </div>
-                            
-                            {/* Buffer Info */}
-                            <div className="text-xs text-white/50 mb-3">
-                                <p>Buffer Radius: {analysisData.buffer?.radiusKm || bufferRadius} km</p>
-                                <p>Area: {(analysisData.buffer?.areaKm2 || 0).toFixed(0)} km²</p>
-                            </div>
-                            
-                            {/* Risk Breakdown */}
-                            {getRiskSummary()}
-                        </div>
-
-                        {/* Selected Marker Details */}
-                        {selectedMarker && (
-                            <div className="glass-panel p-4 rounded-2xl mb-3 border-neon-green/30">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h4 className="font-bold text-sm">Species Details</h4>
-                                    <button 
-                                        onClick={() => setSelectedMarker(null)}
-                                        className="text-white/50 hover:text-white"
-                                    >
-                                        <span className="material-symbols-outlined text-sm">close</span>
-                                    </button>
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="font-bold text-neon-green">{selectedMarker.commonName}</p>
-                                    <p className="text-xs text-white/60 italic">{selectedMarker.scientificName}</p>
-                                    <div className="flex items-center gap-2 mt-2">
-                                        <span 
-                                            className="px-2 py-0.5 text-xs rounded-full"
-                                            style={{ 
-                                                backgroundColor: RISK_COLORS[selectedMarker.riskLevel],
-                                                color: selectedMarker.riskLevel === 'YELLOW' ? '#000' : '#fff'
-                                            }}
-                                        >
-                                            {RISK_LABELS[selectedMarker.riskLevel]}
-                                        </span>
+                            {/* Map Legend */}
+                            <div className="absolute bottom-3 left-3 bg-black/90 backdrop-blur-md p-3 rounded-xl z-[400] border border-white/20 shadow-lg">
+                                <p className="text-xs font-bold text-white/90 mb-2 uppercase tracking-wider">Risk Level</p>
+                                <div className="space-y-1.5">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]"></div>
+                                        <span className="text-xs text-white/80 font-medium">Critical (CR)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+                                        <span className="text-xs text-white/80 font-medium">Endangered (EN)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.8)]"></div>
+                                        <span className="text-xs text-white/80 font-medium">Vulnerable (VU)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-4 h-4 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+                                        <span className="text-xs text-white/80 font-medium">Stable (LC)</span>
                                     </div>
                                 </div>
                             </div>
-                        )}
-                    </section>
-                )}
-
-                {/* Info Disclaimer */}
-                <section className="px-5">
-                    <div className="p-4 glass-panel border-blue-500/20 bg-blue-500/5 rounded-2xl">
-                        <div className="flex gap-3">
-                            <span className="material-symbols-outlined text-blue-400 text-[20px]">info</span>
-                            <p className="text-[10px] text-white/50 leading-relaxed">
-                                Ganga Buffer Zone analysis filters GBIF species data within the selected radius 
-                                from the river centerline. Risk classification based on IUCN Red List status.
-                                <br/><br/>
-                                🔴 <strong>Critical</strong> - Critically Endangered
-                                🔵 <strong>Endangered</strong> - Endangered species
-                                🟡 <strong>Vulnerable</strong> - At-risk species
-                                🟢 <strong>Stable</strong> - Least concern
-                            </p>
                         </div>
-                    </div>
-                </section>
+                    </section>
+
+                    {/* Right col — controls + results */}
+                    <div className="flex flex-col gap-4">
+
+                        {/* Buffer Radius Selector */}
+                        <section className="mb-4">
+                            <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
+                                Buffer Radius
+                            </h3>
+                            <div className="flex gap-2">
+                                {[5, 10, 25, 50].map((radius) => (
+                                    <button
+                                        key={radius}
+                                        onClick={() => setBufferRadius(radius)}
+                                        className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${bufferRadius === radius
+                                                ? 'bg-neon-green text-black'
+                                                : 'glass-panel text-white/70 hover:bg-white/10'
+                                            }`}
+                                    >
+                                        {radius} km
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Analysis Options */}
+                        <section className="mb-4">
+                            <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
+                                Analysis Options
+                            </h3>
+                            <div className="space-y-2">
+                                <label className="glass-panel p-4 rounded-2xl flex items-center justify-between cursor-pointer">
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-neon-green">visibility</span>
+                                        <div>
+                                            <span className="text-sm font-bold">Show Buffer Zone</span>
+                                            <p className="text-[10px] text-white/40">Display Ganga buffer area</p>
+                                        </div>
+                                    </div>
+                                    <input
+                                        type="checkbox"
+                                        checked={showGangaLayer}
+                                        onChange={(e) => setShowGangaLayer(e.target.checked)}
+                                        className="w-5 h-5 accent-neon-green"
+                                    />
+                                </label>
+
+                                <label className="glass-panel p-4 rounded-2xl flex items-center justify-between cursor-pointer">
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-yellow-400">star</span>
+                                        <div>
+                                            <span className="text-sm font-bold">Major Species Only</span>
+                                            <p className="text-[10px] text-white/40">Dolphin, Gharial, Tiger, etc.</p>
+                                        </div>
+                                    </div>
+                                    <input
+                                        type="checkbox"
+                                        checked={majorSpeciesOnly}
+                                        onChange={(e) => setMajorSpeciesOnly(e.target.checked)}
+                                        className="w-5 h-5 accent-neon-green"
+                                    />
+                                </label>
+                            </div>
+                        </section>
+
+                        {/* Run Analysis Button */}
+                        <section className="mb-4">
+                            <button
+                                onClick={runAnalysis}
+                                disabled={loading}
+                                className="w-full glass-panel bg-neon-green hover:bg-neon-green/90 text-black font-black h-14 flex items-center justify-center gap-2 transition-all active:scale-95 uppercase tracking-widest text-sm rounded-2xl shadow-[0_0_20px_rgba(57,255,20,0.4)] disabled:opacity-50"
+                            >
+                                {loading ? (
+                                    <>
+                                        <span className="material-symbols-outlined animate-spin">sync</span>
+                                        ANALYZING...
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="material-symbols-outlined">science</span>
+                                        Analyze Biodiversity
+                                    </>
+                                )}
+                            </button>
+                        </section>
+
+                        {/* Error Message */}
+                        {error && (
+                            <section className="mb-4">
+                                <div className="p-4 glass-panel border-red-500/30 bg-red-500/10 rounded-2xl">
+                                    <div className="flex items-center gap-3">
+                                        <span className="material-symbols-outlined text-red-400">error</span>
+                                        <div>
+                                            <p className="text-sm font-bold text-red-400">Analysis Failed</p>
+                                            <p className="text-[11px] text-white/60 mt-1">{error}</p>
+                                            <p className="text-[10px] text-white/40 mt-1">Make sure the backend server is running on port 3000</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+
+                        {/* Analysis Results */}
+                        {analysisData && (
+                            <section className="mb-4">
+                                <h3 className="text-white/40 text-[11px] font-bold uppercase tracking-[0.15em] mb-3 ml-1">
+                                    Biodiversity Analysis
+                                </h3>
+
+                                {/* Summary */}
+                                <div className="glass-panel p-4 rounded-2xl mb-3 border-white/10">
+
+                                    {/* Species Count */}
+                                    <div className="flex items-center justify-between mb-3">
+                                        <span className="text-sm font-bold">Species Found</span>
+
+                                        <span className="text-2xl font-black text-neon-green">
+                                            {analysisData?.species?.total ?? 0}
+                                        </span>
+                                    </div>
+
+                                    {/* Buffer Info */}
+                                    <div className="text-xs text-white/50 mb-3 space-y-1">
+
+                                        <p>
+                                            Buffer Radius:{" "}
+                                            {analysisData?.buffer?.radiusKm ?? bufferRadius} km
+                                        </p>
+
+                                        <p>
+                                            Area:{" "}
+                                            {Number(analysisData?.buffer?.areaKm2 ?? 0).toFixed(1)} km²
+                                        </p>
+
+                                    </div>
+
+                                    {/* Risk Breakdown */}
+                                    {getRiskSummary && getRiskSummary()}
+
+                                </div>
+
+                                {/* Selected Marker Details */}
+                                {selectedMarker && (
+                                    <div className="glass-panel p-4 rounded-2xl mb-3 border-neon-green/30">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <h4 className="font-bold text-sm">Species Details</h4>
+                                            <button
+                                                onClick={() => setSelectedMarker(null)}
+                                                className="text-white/50 hover:text-white"
+                                            >
+                                                <span className="material-symbols-outlined text-sm">close</span>
+                                            </button>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <p className="font-bold text-neon-green">{selectedMarker.commonName}</p>
+                                            <p className="text-xs text-white/60 italic">{selectedMarker.scientificName}</p>
+                                            <div className="flex items-center gap-2 mt-2">
+                                                <span
+                                                    className="px-2 py-0.5 text-xs rounded-full"
+                                                    style={{
+                                                        backgroundColor: RISK_COLORS[selectedMarker.riskLevel],
+                                                        color: selectedMarker.riskLevel === 'YELLOW' ? '#000' : '#fff'
+                                                    }}
+                                                >
+                                                    {RISK_LABELS[selectedMarker.riskLevel]}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </section>
+                        )}
+
+                        {/* Info Disclaimer */}
+                        <section>
+                            <div className="p-4 glass-panel border-blue-500/20 bg-blue-500/5 rounded-2xl">
+                                <div className="flex gap-3">
+                                    <span className="material-symbols-outlined text-blue-400 text-[20px]">info</span>
+                                    <p className="text-[10px] text-white/50 leading-relaxed">
+                                        Ganga Buffer Zone analysis filters GBIF species data within the selected radius
+                                        from the river centerline. Risk classification based on IUCN Red List status.
+                                        <br /><br />
+                                        🔴 <strong>Critical</strong> - Critically Endangered
+                                        🔵 <strong>Endangered</strong> - Endangered species
+                                        🟡 <strong>Vulnerable</strong> - At-risk species
+                                        🟢 <strong>Stable</strong> - Least concern
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>{/* end right col */}
+                </div>{/* end two-col grid */}
 
             </div>
             <Nav />

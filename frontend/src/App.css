@@ -5,6 +5,107 @@
 html,
 body {
   font-family: "Inter", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== LIGHT THEME OVERRIDES ===== */
+
+/* CSS custom property overrides (used by landing.css, dashboard.css etc.) */
+[data-theme="light"] {
+  color-scheme: light;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(0, 0, 0, 0.12);
+  --glass-blur: 14px;
+  --primary-glow: rgba(34, 255, 136, 0.25);
+}
+
+/* Base body + root */
+[data-theme="light"] body,
+[data-theme="light"] #root {
+  background: linear-gradient(135deg, #eef6ee 0%, #dff0e8 100%) !important;
+  color: #1a2e1a !important;
+}
+
+/* Glass components */
+[data-theme="light"] .glass-panel {
+  background: rgba(255, 255, 255, 0.65) !important;
+  border-color: rgba(0, 0, 0, 0.10) !important;
+  /* No color override here — let child buttons keep their own colors */
+}
+[data-theme="light"] .glass-pill {
+  background: rgba(255, 255, 255, 0.50) !important;
+  border-color: rgba(0, 0, 0, 0.10) !important;
+  color: #1a2e1a !important;
+}
+[data-theme="light"] .glass-button-secondary {
+  background: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #1a2e1a !important;
+}
+[data-theme="light"] .glass-input {
+  background: rgba(255, 255, 255, 0.70) !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #1a2e1a !important;
+}
+[data-theme="light"] .glass-input::placeholder {
+  color: rgba(26, 46, 26, 0.40) !important;
+}
+
+/* Frosted / text helpers */
+[data-theme="light"] .frosted-text,
+[data-theme="light"] .text-frosted {
+  color: #1a2e1a !important;
+}
+
+/* Nav bar (fixed at bottom) */
+[data-theme="light"] nav,
+[data-theme="light"] [style*="rgba(10,14,20"],
+[data-theme="light"] [style*="rgba(10, 14, 20"] {
+  background: rgba(240, 250, 242, 0.88) !important;
+  border-color: rgba(0, 0, 0, 0.10) !important;
+}
+
+/* ---- Tailwind text-white overrides ---- */
+[data-theme="light"] .text-white          { color: #1a2e1a !important; }
+[data-theme="light"] .text-white\/90      { color: rgba(26, 46, 26, 0.90) !important; }
+[data-theme="light"] .text-white\/80      { color: rgba(26, 46, 26, 0.80) !important; }
+[data-theme="light"] .text-white\/70      { color: rgba(26, 46, 26, 0.70) !important; }
+[data-theme="light"] .text-white\/60      { color: rgba(26, 46, 26, 0.60) !important; }
+[data-theme="light"] .text-white\/50      { color: rgba(26, 46, 26, 0.50) !important; }
+[data-theme="light"] .text-white\/40      { color: rgba(26, 46, 26, 0.40) !important; }
+[data-theme="light"] .text-white\/30      { color: rgba(26, 46, 26, 0.30) !important; }
+[data-theme="light"] .text-white\/20      { color: rgba(26, 46, 26, 0.20) !important; }
+[data-theme="light"] .text-white\/10      { color: rgba(26, 46, 26, 0.10) !important; }
+
+/* ---- Tailwind text-slate overrides ---- */
+[data-theme="light"] .text-slate-100      { color: #1a3020 !important; }
+[data-theme="light"] .text-slate-200      { color: #243828 !important; }
+[data-theme="light"] .text-slate-300      { color: #304030 !important; }
+[data-theme="light"] .text-slate-400      { color: #405040 !important; }
+
+/* ---- Dark background overrides ---- */
+[data-theme="light"] .bg-slate-900\/40,
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-slate-900 {
+  background: rgba(220, 240, 225, 0.60) !important;
+}
+[data-theme="light"] .bg-black\/40,
+[data-theme="light"] .bg-black\/30,
+[data-theme="light"] .bg-black\/20,
+[data-theme="light"] .bg-black\/60 {
+  background: rgba(255, 255, 255, 0.60) !important;
+}
+
+/* ---- Border overrides ---- */
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/20,
+[data-theme="light"] .border-white\/08 {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ---- Placeholder overrides ---- */
+[data-theme="light"] .placeholder\:text-white\/30::placeholder {
+  color: rgba(26, 46, 26, 0.35) !important;
 }
 
 @theme {

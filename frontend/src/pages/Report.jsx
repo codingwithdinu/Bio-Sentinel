@@ -175,7 +175,7 @@ const Report = () => {
 
     return (
         <div className="text-white/90 font-sans min-h-screen bg-bg-dark selection:bg-neon-green/30">
-            <div className="max-w-md mx-auto min-h-screen relative z-10 pb-32">
+            <div className="max-w-2xl mx-auto min-h-screen relative z-10 pb-32">
 
                 {/* Header */}
                 <div className="flex items-center pt-6 px-6 justify-between">
@@ -356,7 +356,7 @@ const Report = () => {
                 </div>
 
                 {/* SUBMIT BUTTON */}
-                <div className="my-10 mb-30 px-6 z-50 max-w-md mx-auto pointer-events-none">
+                <div className="my-10 mb-30 px-6 z-50 max-w-2xl mx-auto pointer-events-none">
                     <button
                         onClick={handleSubmit}
                         disabled={submitting || submitStatus === 'success'}

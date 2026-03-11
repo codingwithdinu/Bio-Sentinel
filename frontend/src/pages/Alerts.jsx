@@ -495,9 +495,11 @@ const Alerts = () => {
                 .ring-animation { animation: ring 0.5s ease-in-out; }
             `}</style>
 
-            <div className="max-w-md mx-auto min-h-screen relative z-10">
+            {/* ── Page wrapper: single-col on mobile, capped width on desktop ── */}
+            <div className="w-full max-w-screen-xl mx-auto relative z-10 px-4 md:px-6 lg:px-8">
+
                 {/* Header */}
-                <div className="p-4 pb-2">
+                <div className="pt-4 pb-2">
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <h2 className="frosted-text text-lg font-bold tracking-tight">Bio Sentinal</h2>
@@ -524,7 +526,7 @@ const Alerts = () => {
                     </div>
 
                     {/* Tab Navigation */}
-                    <div className="flex gap-1 mb-4 overflow-x-auto tab-scrollbar">
+                    <div className="flex gap-1 mb-4 overflow-x-auto tab-scrollbar pb-1">
                         {[
                             { key: 'alerts', label: 'Alerts', icon: 'notifications', count: alerts.length },
                             { key: 'danger', label: 'Danger Zones', icon: 'warning', count: dangerZones.length },
@@ -555,256 +557,264 @@ const Alerts = () => {
                             </button>
                         ))}
                     </div>
-
-                    {/* Quick Stats */}
-                    {activeTab === 'alerts' && (
-                        <div className="flex gap-2 mb-4">
-                            <div className="flex-1 glass-panel p-3 rounded-xl text-center border-red-500/30">
-                                <p className="text-lg font-bold text-red-400">{alertCounts.critical}</p>
-                                <p className="text-[10px] text-white/50 uppercase">Critical</p>
-                            </div>
-                            <div className="flex-1 glass-panel p-3 rounded-xl text-center border-orange-500/30">
-                                <p className="text-lg font-bold text-orange-400">{alertCounts.high}</p>
-                                <p className="text-[10px] text-white/50 uppercase">High</p>
-                            </div>
-                            <div className="flex-1 glass-panel p-3 rounded-xl text-center border-yellow-500/30">
-                                <p className="text-lg font-bold text-yellow-400">{alertCounts.warning}</p>
-                                <p className="text-[10px] text-white/50 uppercase">Warning</p>
-                            </div>
-                            <div className="flex-1 glass-panel p-3 rounded-xl text-center border-green-500/30">
-                                <p className="text-lg font-bold text-green-400">{alertCounts.positive}</p>
-                                <p className="text-[10px] text-white/50 uppercase">Positive</p>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Map */}
-                    <div className="relative w-full h-56 rounded-2xl overflow-hidden border border-white/10 mb-4">
-                        <MapContainer 
-                            center={mapCenter}
-                            zoom={7}
-                            style={{ height: "100%", width: "100%" }}
-                            attributionControl={false}
-                        >
-                            <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
-                            <RecenterMap lat={mapCenter[0]} lon={mapCenter[1]} />
-                            
-                            {/* Ganga River Line */}
-                            <Marker position={[30.9784, 78.1378]} icon={L.divIcon({
-                                className: 'hidden'
-                            })} />
-                            <Marker position={[21.6418, 88.1251]} icon={L.divIcon({
-                                className: 'hidden'
-                            })} />
-                            
-                            {/* Alert Markers */}
-                            {activeTab === 'alerts' && alerts.map(alert => (
-                                <Marker 
-                                    key={alert.id}
-                                    position={[alert.lat, alert.lon]}
-                                    icon={createAlertIcon(alert.type, alert.level)}
-                                    eventHandlers={{
-                                        click: () => setSelectedAlert(alert)
-                                    }}
-                                >
-                                    <Popup>
-                                        <div className="text-black min-w-[180px]">
-                                            <p className="font-bold text-sm">{alert.title}</p>
-                                            <p className="text-xs text-gray-600">{alert.location}</p>
-                                            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] mt-1 ${
-                                                alert.level === 'CRITICAL' || alert.level === 'DANGER' ? 'bg-red-100' :
-                                                alert.level === 'HIGH' ? 'bg-orange-100' :
-                                                alert.level === 'WARNING' ? 'bg-yellow-100' :
-                                                'bg-green-100'
-                                            }`}>
-                                                {alert.level}
-                                            </span>
-                                        </div>
-                                    </Popup>
-                                </Marker>
-                            ))}
-                            
-                            {/* Danger Zone Markers */}
-                            {activeTab === 'danger' && dangerZones.map(zone => (
-                                <Marker 
-                                    key={zone.id}
-                                    position={[zone.lat, zone.lon]}
-                                    icon={createAlertIcon('DANGER', zone.riskLevel)}
-                                    eventHandlers={{
-                                        click: () => setSelectedAlert(zone)
-                                    }}
-                                >
-                                    <Popup>
-                                        <div className="text-black min-w-[180px]">
-                                            <p className="font-bold text-sm">{zone.name}</p>
-                                            <p className="text-xs text-gray-600">{zone.type}</p>
-                                            <p className="text-xs mt-1">{zone.description}</p>
-                                        </div>
-                                    </Popup>
-                                </Marker>
-                            ))}
-                        </MapContainer>
-
-                        {/* Live Indicator */}
-                        <div className="absolute top-2 right-2 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg">
-                            <span className={`w-2 h-2 rounded-full ${dataSource === 'api' ? 'bg-green-500' : 'bg-yellow-500'} animate-pulse`}></span>
-                            <span className="text-[10px] text-white/70">{dataSource === 'api' ? 'LIVE API' : 'MOCK DATA'}</span>
-                        </div>
-
-                        {/* Map Legend */}
-                        <div className="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 text-[10px] space-y-1">
-                            <p className="text-white/50 mb-1 font-bold">Legend</p>
-                            <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500"></span><span className="text-white/70">Critical/Danger</span></div>
-                            <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-500"></span><span className="text-white/70">High</span></div>
-                            <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500"></span><span className="text-white/70">Warning</span></div>
-                            <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500"></span><span className="text-white/70">Positive</span></div>
-                        </div>
-                    </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="px-4 space-y-3">
-                    {/* Alerts Tab */}
-                    {activeTab === 'alerts' && (
-                        <div className="space-y-3">
-                            {loading && dataSource === 'mock' && (
-                                <div className="flex items-center justify-center py-2 mb-2">
-                                    <span className="material-symbols-outlined text-yellow-500 animate-spin text-sm mr-2">sync</span>
-                                    <span className="text-xs text-yellow-500">Loading real-time data...</span>
-                                </div>
-                            )}
-                            {alerts.length === 0 ? (
-                                <div className="text-center py-8">
-                                    <span className="material-symbols-outlined text-white/30 text-4xl">notifications_none</span>
-                                    <p className="text-white/50 text-sm mt-2">No alerts active</p>
-                                </div>
-                            ) : (
-                                alerts.map(alert => (
-                                    <AlertCard 
-                                        key={alert.id} 
-                                        alert={alert} 
-                                        onClick={() => setSelectedAlert(alert)}
-                                        getLevelColor={getLevelColor}
-                                        getLevelBadge={getLevelBadge}
-                                        formatTimestamp={formatTimestamp}
-                                    />
-                                ))
-                            )}
-                        </div>
-                    )}
+                {/* ── Desktop two-column / Mobile single-column layout ── */}
+                <div className="flex flex-col lg:flex-row lg:gap-6 lg:items-start">
 
-                    {/* Danger Zones Tab */}
-                    {activeTab === 'danger' && (
-                        <div className="space-y-3">
-                            <div className="glass-panel p-4 rounded-xl border-red-500/30">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="material-symbols-outlined text-red-400">warning</span>
-                                    <h3 className="text-sm font-bold text-white">High Risk Areas</h3>
+                    {/* ── LEFT COLUMN: Map + Stats (sticky on desktop) ── */}
+                    <div className="lg:sticky lg:top-4 lg:w-[45%] xl:w-2/5 flex-shrink-0 mb-4 lg:mb-0">
+
+                        {/* Quick Stats — alerts tab only */}
+                        {activeTab === 'alerts' && (
+                            <div className="flex gap-2 mb-3">
+                                <div className="flex-1 glass-panel p-3 rounded-xl text-center border-red-500/30">
+                                    <p className="text-lg font-bold text-red-400">{alertCounts.critical}</p>
+                                    <p className="text-[10px] text-white/50 uppercase">Critical</p>
                                 </div>
-                                <p className="text-xs text-white/60">Areas requiring immediate attention and monitoring</p>
+                                <div className="flex-1 glass-panel p-3 rounded-xl text-center border-orange-500/30">
+                                    <p className="text-lg font-bold text-orange-400">{alertCounts.high}</p>
+                                    <p className="text-[10px] text-white/50 uppercase">High</p>
+                                </div>
+                                <div className="flex-1 glass-panel p-3 rounded-xl text-center border-yellow-500/30">
+                                    <p className="text-lg font-bold text-yellow-400">{alertCounts.warning}</p>
+                                    <p className="text-[10px] text-white/50 uppercase">Warning</p>
+                                </div>
+                                <div className="flex-1 glass-panel p-3 rounded-xl text-center border-green-500/30">
+                                    <p className="text-lg font-bold text-green-400">{alertCounts.positive}</p>
+                                    <p className="text-[10px] text-white/50 uppercase">Positive</p>
+                                </div>
                             </div>
-                            {dangerZones.map(zone => (
-                                <div 
-                                    key={zone.id}
-                                    onClick={() => setSelectedAlert(zone)}
-                                    className="glass-panel p-4 rounded-xl cursor-pointer hover:border-white/30 transition-all"
-                                >
-                                    <div className="flex items-center justify-between mb-2">
-                                        <h4 className="text-sm font-bold text-white">{zone.name}</h4>
-                                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(zone.riskLevel)}`}>
-                                            {zone.riskLevel}
-                                        </span>
-                                    </div>
-                                    <p className="text-xs text-white/60 mb-2">{zone.description}</p>
-                                    <div className="flex items-center justify-between">
-                                        <span className="text-[10px] text-white/40">{zone.type}</span>
-                                        <span className="text-[10px] text-white/40">{zone.lat?.toFixed(4)}, {zone.lon?.toFixed(4)}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                        )}
 
-                    {/* User Reports Tab */}
-                    {activeTab === 'reports' && (
-                        <div className="space-y-3">
-                            <button 
-                                onClick={() => setShowReportModal(true)}
-                                className="w-full glass-panel p-4 rounded-xl border-neon-green/30 hover:border-neon-green/50 transition-all"
+                        {/* Map */}
+                        <div className="relative w-full h-56 md:h-72 lg:h-[calc(100vh-14rem)] rounded-2xl overflow-hidden border border-white/10">
+                            <MapContainer 
+                                center={mapCenter}
+                                zoom={7}
+                                style={{ height: "100%", width: "100%" }}
+                                attributionControl={false}
                             >
-                                <div className="flex items-center justify-center gap-2">
-                                    <span className="material-symbols-outlined text-neon-green">add_circle</span>
-                                    <span className="text-sm font-bold text-neon-green">Submit New Report</span>
+                                <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+                                <RecenterMap lat={mapCenter[0]} lon={mapCenter[1]} />
+                                
+                                {/* Ganga River Line */}
+                                <Marker position={[30.9784, 78.1378]} icon={L.divIcon({
+                                    className: 'hidden'
+                                })} />
+                                <Marker position={[21.6418, 88.1251]} icon={L.divIcon({
+                                    className: 'hidden'
+                                })} />
+                                
+                                {/* Alert Markers */}
+                                {activeTab === 'alerts' && alerts.map(alert => (
+                                    <Marker 
+                                        key={alert.id}
+                                        position={[alert.lat, alert.lon]}
+                                        icon={createAlertIcon(alert.type, alert.level)}
+                                        eventHandlers={{
+                                            click: () => setSelectedAlert(alert)
+                                        }}
+                                    >
+                                        <Popup>
+                                            <div className="text-black min-w-[180px]">
+                                                <p className="font-bold text-sm">{alert.title}</p>
+                                                <p className="text-xs text-gray-600">{alert.location}</p>
+                                                <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] mt-1 ${
+                                                    alert.level === 'CRITICAL' || alert.level === 'DANGER' ? 'bg-red-100' :
+                                                    alert.level === 'HIGH' ? 'bg-orange-100' :
+                                                    alert.level === 'WARNING' ? 'bg-yellow-100' :
+                                                    'bg-green-100'
+                                                }`}>
+                                                    {alert.level}
+                                                </span>
+                                            </div>
+                                        </Popup>
+                                    </Marker>
+                                ))}
+                                
+                                {/* Danger Zone Markers */}
+                                {activeTab === 'danger' && dangerZones.map(zone => (
+                                    <Marker 
+                                        key={zone.id}
+                                        position={[zone.lat, zone.lon]}
+                                        icon={createAlertIcon('DANGER', zone.riskLevel)}
+                                        eventHandlers={{
+                                            click: () => setSelectedAlert(zone)
+                                        }}
+                                    >
+                                        <Popup>
+                                            <div className="text-black min-w-[180px]">
+                                                <p className="font-bold text-sm">{zone.name}</p>
+                                                <p className="text-xs text-gray-600">{zone.type}</p>
+                                                <p className="text-xs mt-1">{zone.description}</p>
+                                            </div>
+                                        </Popup>
+                                    </Marker>
+                                ))}
+                            </MapContainer>
+
+                            {/* Live Indicator */}
+                            <div className="absolute top-2 right-2 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-lg">
+                                <span className={`w-2 h-2 rounded-full ${dataSource === 'api' ? 'bg-green-500' : 'bg-yellow-500'} animate-pulse`}></span>
+                                <span className="text-[10px] text-white/70">{dataSource === 'api' ? 'LIVE API' : 'MOCK DATA'}</span>
+                            </div>
+
+                            {/* Map Legend */}
+                            <div className="absolute bottom-2 left-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 text-[10px] space-y-1">
+                                <p className="text-white/50 mb-1 font-bold">Legend</p>
+                                <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500"></span><span className="text-white/70">Critical/Danger</span></div>
+                                <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-500"></span><span className="text-white/70">High</span></div>
+                                <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500"></span><span className="text-white/70">Warning</span></div>
+                                <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500"></span><span className="text-white/70">Positive</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ── RIGHT COLUMN: Content Area ── */}
+                    <div className="flex-1 min-w-0 space-y-3 lg:overflow-y-auto lg:max-h-[calc(100vh-10rem)]">
+                        {/* Alerts Tab */}
+                        {activeTab === 'alerts' && (
+                            <div className="space-y-3">
+                                {loading && dataSource === 'mock' && (
+                                    <div className="flex items-center justify-center py-2 mb-2">
+                                        <span className="material-symbols-outlined text-yellow-500 animate-spin text-sm mr-2">sync</span>
+                                        <span className="text-xs text-yellow-500">Loading real-time data...</span>
+                                    </div>
+                                )}
+                                {alerts.length === 0 ? (
+                                    <div className="text-center py-8">
+                                        <span className="material-symbols-outlined text-white/30 text-4xl">notifications_none</span>
+                                        <p className="text-white/50 text-sm mt-2">No alerts active</p>
+                                    </div>
+                                ) : (
+                                    alerts.map(alert => (
+                                        <AlertCard 
+                                            key={alert.id} 
+                                            alert={alert} 
+                                            onClick={() => setSelectedAlert(alert)}
+                                            getLevelColor={getLevelColor}
+                                            getLevelBadge={getLevelBadge}
+                                            formatTimestamp={formatTimestamp}
+                                        />
+                                    ))
+                                )}
+                            </div>
+                        )}
+
+                        {/* Danger Zones Tab */}
+                        {activeTab === 'danger' && (
+                            <div className="space-y-3">
+                                <div className="glass-panel p-4 rounded-xl border-red-500/30">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="material-symbols-outlined text-red-400">warning</span>
+                                        <h3 className="text-sm font-bold text-white">High Risk Areas</h3>
+                                    </div>
+                                    <p className="text-xs text-white/60">Areas requiring immediate attention and monitoring</p>
                                 </div>
-                            </button>
-                            
-                            {userReports.length === 0 ? (
-                                <div className="text-center py-8">
-                                    <span className="material-symbols-out-full text-white/30 text-4xl">edit_note</span>
-                                    <p className="text-white/50 text-sm mt-2">No reports submitted yet</p>
-                                </div>
-                            ) : (
-                                userReports.map(report => (
-                                    <div key={report.id} className="glass-panel p-4 rounded-xl">
+                                {dangerZones.map(zone => (
+                                    <div 
+                                        key={zone.id}
+                                        onClick={() => setSelectedAlert(zone)}
+                                        className="glass-panel p-4 rounded-xl cursor-pointer hover:border-white/30 transition-all"
+                                    >
                                         <div className="flex items-center justify-between mb-2">
-                                            <span className="text-xs text-white/40">{formatTimestamp(report.timestamp)}</span>
-                                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(report.priority)}`}>
-                                                {report.status}
+                                            <h4 className="text-sm font-bold text-white">{zone.name}</h4>
+                                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(zone.riskLevel)}`}>
+                                                {zone.riskLevel}
                                             </span>
                                         </div>
-                                        <p className="text-sm font-bold text-white">{report.title}</p>
-                                    </div>
-                                ))
-                            )}
-                        </div>
-                    )}
-
-                    {/* MOSDAC Satellite Tab */}
-                    {activeTab === 'mosdac' && (
-                        <div className="space-y-3">
-                            <div className="glass-panel p-4 rounded-xl border-blue-500/30">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <span className="material-symbols-outlined text-blue-400">satellite_alt</span>
-                                    <h3 className="text-sm font-bold text-white">Ganga River Satellite Data</h3>
-                                    <span className="text-[10px] text-white/50 ml-auto">EOS-06</span>
-                                </div>
-                            </div>
-                            
-                            <div className="grid grid-cols-2 gap-2">
-                                {[
-                                    { label: 'Chlorophyll-a', value: mosdacData?.chlorophyll?.value, unit: 'mg/m³', risk: mosdacData?.chlorophyll?.riskLevel },
-                                    { label: 'Sea Surface Temp', value: mosdacData?.sst?.value, unit: '°C', risk: mosdacData?.sst?.riskLevel },
-                                    { label: 'Turbidity', value: mosdacData?.turbidity?.value, unit: 'NTU', risk: mosdacData?.turbidity?.riskLevel },
-                                    { label: 'Dissolved O₂', value: mosdacData?.dissolvedOxygen?.value, unit: 'mg/L', risk: mosdacData?.dissolvedOxygen?.riskLevel }
-                                ].map((item, idx) => (
-                                    <div key={idx} className="glass-panel p-3 rounded-xl">
-                                        <p className="text-[10px] text-white/50 uppercase mb-1">{item.label}</p>
-                                        <p className="text-lg font-bold text-neon-green">{item.value || '--'}</p>
-                                        <p className="text-[10px] text-white/40">{item.unit}</p>
-                                        {item.risk && (
-                                            <span className={`mt-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(item.risk)}`}>
-                                                {item.risk}
-                                            </span>
-                                        )}
+                                        <p className="text-xs text-white/60 mb-2">{zone.description}</p>
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-[10px] text-white/40">{zone.type}</span>
+                                            <span className="text-[10px] text-white/40">{zone.lat?.toFixed(4)}, {zone.lon?.toFixed(4)}</span>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
-                            
-                            <div className={`p-4 rounded-xl border ${getLevelColor(mosdacData?.overallRisk || 'INFO')}`}>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-sm font-bold">Overall Risk Level</span>
-                                    <span className={`text-lg font-bold ${
-                                        mosdacData?.overallRisk?.includes('CRITICAL') ? 'text-red-400' :
-                                        mosdacData?.overallRisk?.includes('HIGH') ? 'text-orange-400' :
-                                        mosdacData?.overallRisk?.includes('WARNING') ? 'text-yellow-400' :
-                                        'text-green-400'
-                                    }`}>
-                                        {mosdacData?.overallRisk || '--'}
-                                    </span>
+                        )}
+
+                        {/* User Reports Tab */}
+                        {activeTab === 'reports' && (
+                            <div className="space-y-3">
+                                <button 
+                                    onClick={() => setShowReportModal(true)}
+                                    className="w-full glass-panel p-4 rounded-xl border-neon-green/30 hover:border-neon-green/50 transition-all"
+                                >
+                                    <div className="flex items-center justify-center gap-2">
+                                        <span className="material-symbols-outlined text-neon-green">add_circle</span>
+                                        <span className="text-sm font-bold text-neon-green">Submit New Report</span>
+                                    </div>
+                                </button>
+                                
+                                {userReports.length === 0 ? (
+                                    <div className="text-center py-8">
+                                        <span className="material-symbols-out-full text-white/30 text-4xl">edit_note</span>
+                                        <p className="text-white/50 text-sm mt-2">No reports submitted yet</p>
+                                    </div>
+                                ) : (
+                                    userReports.map(report => (
+                                        <div key={report.id} className="glass-panel p-4 rounded-xl">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-xs text-white/40">{formatTimestamp(report.timestamp)}</span>
+                                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(report.priority)}`}>
+                                                    {report.status}
+                                                </span>
+                                            </div>
+                                            <p className="text-sm font-bold text-white">{report.title}</p>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+                        )}
+
+                        {/* MOSDAC Satellite Tab */}
+                        {activeTab === 'mosdac' && (
+                            <div className="space-y-3">
+                                <div className="glass-panel p-4 rounded-xl border-blue-500/30">
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <span className="material-symbols-outlined text-blue-400">satellite_alt</span>
+                                        <h3 className="text-sm font-bold text-white">Ganga River Satellite Data</h3>
+                                        <span className="text-[10px] text-white/50 ml-auto">EOS-06</span>
+                                    </div>
+                                </div>
+                                
+                                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-2">
+                                    {[
+                                        { label: 'Chlorophyll-a', value: mosdacData?.chlorophyll?.value, unit: 'mg/m³', risk: mosdacData?.chlorophyll?.riskLevel },
+                                        { label: 'Sea Surface Temp', value: mosdacData?.sst?.value, unit: '°C', risk: mosdacData?.sst?.riskLevel },
+                                        { label: 'Turbidity', value: mosdacData?.turbidity?.value, unit: 'NTU', risk: mosdacData?.turbidity?.riskLevel },
+                                        { label: 'Dissolved O₂', value: mosdacData?.dissolvedOxygen?.value, unit: 'mg/L', risk: mosdacData?.dissolvedOxygen?.riskLevel }
+                                    ].map((item, idx) => (
+                                        <div key={idx} className="glass-panel p-3 rounded-xl">
+                                            <p className="text-[10px] text-white/50 uppercase mb-1">{item.label}</p>
+                                            <p className="text-lg font-bold text-neon-green">{item.value || '--'}</p>
+                                            <p className="text-[10px] text-white/40">{item.unit}</p>
+                                            {item.risk && (
+                                                <span className={`mt-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${getLevelColor(item.risk)}`}>
+                                                    {item.risk}
+                                                </span>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                                
+                                <div className={`p-4 rounded-xl border ${getLevelColor(mosdacData?.overallRisk || 'INFO')}`}>
+                                    <div className="flex items-center justify-between">
+                                        <span className="text-sm font-bold">Overall Risk Level</span>
+                                        <span className={`text-lg font-bold ${
+                                            mosdacData?.overallRisk?.includes('CRITICAL') ? 'text-red-400' :
+                                            mosdacData?.overallRisk?.includes('HIGH') ? 'text-orange-400' :
+                                            mosdacData?.overallRisk?.includes('WARNING') ? 'text-yellow-400' :
+                                            'text-green-400'
+                                        }`}>
+                                            {mosdacData?.overallRisk || '--'}
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
 

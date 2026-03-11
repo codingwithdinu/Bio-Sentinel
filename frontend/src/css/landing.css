@@ -29,8 +29,8 @@ body::before {
 /* ---------- GLASS UI ---------- */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: 20px;
 }
@@ -41,6 +41,7 @@ body::before {
     rgba(34, 255, 136, 0.35) 0%,
     rgba(34, 255, 136, 0.1) 100%
   );
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(34, 255, 136, 0.4);
   box-shadow: 0 0 20px rgba(34, 255, 136, 0.15);
@@ -50,6 +51,7 @@ body::before {
 
 .glass-button-secondary {
   background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -62,6 +64,7 @@ body::before {
     rgba(147, 51, 234, 0.35) 0%,
     rgba(147, 51, 234, 0.1) 100%
   );
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(147, 51, 234, 0.4);
   box-shadow: 0 0 20px rgba(147, 51, 234, 0.15);
