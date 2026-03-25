@@ -11,7 +11,7 @@
     "@google/generative-ai": "^0.24.1",
     "@turf/turf": "^7.3.4",
     "appwrite": "^22.0.0",
-    "axios": "^1.13.5",
+    "axios": "^1.13.6",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",

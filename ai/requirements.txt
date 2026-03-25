@@ -8,3 +8,5 @@ torch==2.2.0
 Pillow==10.3.0
 numpy==1.26.4
 fastapi[all]>=0.109.0
+kagglehub>=0.3.3
+pandas>=2.2.0

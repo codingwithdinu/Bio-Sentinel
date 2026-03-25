@@ -90,6 +90,7 @@ const Nav = ({ species }) => {
           </NavLink>
 
           <NavItem to="/satellite" icon="satellite_alt" label="Sat" isDark={isDark} />
+          <NavItem to="/endangered-species" icon="crisis_alert" label="Endg" isDark={isDark} />
           <NavItem to="/riparian" icon="eco" label="Riparian" isDark={isDark} />
           <NavItem to="/team" icon="groups" label="Team" isDark={isDark} />
           <NavItem to="/dashboard" icon="dashboard" label="Dash" isDark={isDark} />

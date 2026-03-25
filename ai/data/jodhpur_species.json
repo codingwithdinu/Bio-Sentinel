@@ -1,0 +1,3082 @@
+[
+  {
+    "key": 1269981964,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:36.573+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264118_9064",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/e7de8e9f-a5e5-4e14-b12f-3cec9dedef77",
+          "http://purl.org/dc/terms/created": "2014-09-18T11:17:52+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:36.573+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561429"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264118_9064",
+        "created": "2014-09-18T11:17:52.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/e7de8e9f-a5e5-4e14-b12f-3cec9dedef77"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561429",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561429",
+    "catalogNumber": "BMNH(E)1264118",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:24:49+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269981964\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269981964",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "57f376d4-e7da-4261-888f-d9edcd314ca6",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982018,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:35.016+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264094_9062",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/5a9b0cf7-2951-4c7a-b64c-fde3f511207f",
+          "http://purl.org/dc/terms/created": "2014-09-18T13:05:53+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:35.016+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561427"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264094_9062",
+        "created": "2014-09-18T13:05:53.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/5a9b0cf7-2951-4c7a-b64c-fde3f511207f"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561427",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561427",
+    "catalogNumber": "BMNH(E)1264094",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:24:46+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982018\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982018",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "b3f2e53d-c8f8-4ff3-b66e-9b0242da5d15",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982056,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:51.747+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264106_9063",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/8b08e581-1af2-4833-9f08-cf9ac41e8d2f",
+          "http://purl.org/dc/terms/created": "2014-09-17T21:15:47+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:51.747+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561428"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264106_9063",
+        "created": "2014-09-17T21:15:47.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/8b08e581-1af2-4833-9f08-cf9ac41e8d2f"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561428",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561428",
+    "catalogNumber": "BMNH(E)1264106",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:24:48+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982056\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982056",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "2d5b38da-af2c-431f-bbe3-c7c500aeb7c8",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982112,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:06.360+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264154_9181",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/bb96cdee-ab2d-4c6d-b143-53e408819bea",
+          "http://purl.org/dc/terms/created": "2014-09-18T21:39:28+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:06.360+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561545"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264154_9181",
+        "created": "2014-09-18T21:39:28.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/bb96cdee-ab2d-4c6d-b143-53e408819bea"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561545",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561545",
+    "catalogNumber": "BMNH(E)1264154",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:14+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982112\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982112",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "d8c0ea5e-8bc0-4157-939a-cbfdad5e8542",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982117,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:06.373+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264166_9182",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/ebcd3989-2da6-4828-abb4-128ce69befd0",
+          "http://purl.org/dc/terms/created": "2014-09-18T16:16:44+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:06.373+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561546"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264166_9182",
+        "created": "2014-09-18T16:16:44.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/ebcd3989-2da6-4828-abb4-128ce69befd0"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561546",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561546",
+    "catalogNumber": "BMNH(E)1264166",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:15+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982117\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982117",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "ca7e6952-4453-4b75-96ec-e55596cd880b",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982157,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:06.360+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264178_9183",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/e8894b58-aa12-461a-8ccd-a56974d09d28",
+          "http://purl.org/dc/terms/created": "2014-09-18T16:52:27+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:06.360+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561547"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264178_9183",
+        "created": "2014-09-18T16:52:27.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/e8894b58-aa12-461a-8ccd-a56974d09d28"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561547",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561547",
+    "catalogNumber": "BMNH(E)1264178",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:16+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982157\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982157",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "e6521cbe-6b7a-4079-a8ed-da2aabe42520",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982163,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:58.597+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264142_9180",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/31b81bf9-5a72-4a1a-8e0b-1cd999ea94e5",
+          "http://purl.org/dc/terms/created": "2014-09-19T03:55:44+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:58.597+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561544"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264142_9180",
+        "created": "2014-09-19T03:55:44.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/31b81bf9-5a72-4a1a-8e0b-1cd999ea94e5"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561544",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561544",
+    "catalogNumber": "BMNH(E)1264142",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:12+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982163\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982163",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "06152e34-08a0-4996-9ae3-8148cfd54890",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982167,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:59:05.024+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264190_9184",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/75c10cee-7799-4726-9097-411e986dbf40",
+          "http://purl.org/dc/terms/created": "2014-09-18T22:55:57+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:59:05.024+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561548"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264190_9184",
+        "created": "2014-09-18T22:55:57.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/75c10cee-7799-4726-9097-411e986dbf40"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561548",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561548",
+    "catalogNumber": "BMNH(E)1264190",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:17+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982167\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982167",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "c53bb348-4756-49a6-a82b-dc9f09aa7774",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982173,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:59:04.074+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264214_9186",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/24e3cf8e-ab26-4a73-9ce0-ec746f3fb05f",
+          "http://purl.org/dc/terms/created": "2014-09-18T05:42:13+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:59:04.074+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561550"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264214_9186",
+        "created": "2014-09-18T05:42:13.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/24e3cf8e-ab26-4a73-9ce0-ec746f3fb05f"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561550",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561550",
+    "catalogNumber": "BMNH(E)1264214",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:20+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982173\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982173",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "e4e3204a-9da4-431c-b934-f1414dc75403",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982181,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:06.416+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264202_9185",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/3b36af08-c136-40a7-aea0-8a44bcc08b9c",
+          "http://purl.org/dc/terms/created": "2014-09-19T00:13:42+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:06.416+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561549"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264202_9185",
+        "created": "2014-09-19T00:13:42.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/3b36af08-c136-40a7-aea0-8a44bcc08b9c"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561549",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561549",
+    "catalogNumber": "BMNH(E)1264202",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:19+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982181\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982181",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "e2d584f4-b01a-4a05-be97-5135b73c131b",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  },
+  {
+    "key": 1269982200,
+    "datasetKey": "7e380070-f762-11e1-a439-00145eb45e9a",
+    "publishingOrgKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "networkKeys": [
+      "17abcf75-2f1e-46dd-bf75-a5b21dd02655",
+      "99d66b6c-9087-452f-a9d4-f15f2c2d0e7e"
+    ],
+    "installationKey": "60277b56-f762-11e1-a439-00145eb45e9a",
+    "hostingOrganizationKey": "19456090-b49a-11d8-abeb-b8a03c50a862",
+    "publishingCountry": "GB",
+    "protocol": "DWC_ARCHIVE",
+    "lastCrawled": "2026-03-03T20:22:25.983+00:00",
+    "lastParsed": "2026-03-03T22:58:06.437+00:00",
+    "crawlId": 479,
+    "extensions": {
+      "http://rs.gbif.org/terms/1.0/Multimedia": [
+        {
+          "http://purl.org/dc/terms/type": "StillImage",
+          "http://purl.org/dc/terms/title": "BMNHE_1264130_9179",
+          "http://purl.org/dc/terms/format": "image/jpeg",
+          "http://purl.org/dc/terms/license": "http://creativecommons.org/licenses/by/4.0/",
+          "http://purl.org/dc/terms/rightsHolder": "The Trustees of the Natural History Museum, London",
+          "http://purl.org/dc/terms/identifier": "https://data.nhm.ac.uk/media/90d52930-ffa1-4910-b33e-678163215905",
+          "http://purl.org/dc/terms/created": "2014-09-19T02:11:22+00:00"
+        }
+      ]
+    },
+    "basisOfRecord": "PRESERVED_SPECIMEN",
+    "individualCount": 1,
+    "occurrenceStatus": "PRESENT",
+    "classifications": {
+      "7ddf754f-d193-4cc9-b351-99906754a03b": {
+        "usage": {
+          "key": "35BXZ",
+          "name": "Diaphorina citri Kuwayama, 1907",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1907",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1907"
+        },
+        "acceptedUsage": {
+          "key": "35BY4",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "SYNONYM",
+        "classification": [
+          {
+            "key": "CS5HF",
+            "name": "Eukaryota",
+            "rank": "DOMAIN"
+          },
+          {
+            "key": "N",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "RT",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "L2655",
+            "name": "Hexapoda",
+            "rank": "SUBPHYLUM"
+          },
+          {
+            "key": "H6",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "BXVWV",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "BXWD4",
+            "name": "Sternorrhyncha",
+            "rank": "SUBORDER"
+          },
+          {
+            "key": "C2K3W",
+            "name": "Psyllomorpha",
+            "rank": "INFRAORDER"
+          },
+          {
+            "key": "5KY",
+            "name": "Psylloidea",
+            "rank": "SUPERFAMILY"
+          },
+          {
+            "key": "C5H",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "449D",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "35BY4",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      },
+      "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c": {
+        "usage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "acceptedUsage": {
+          "key": "2013312",
+          "name": "Diaphorina citri Kuwayama, 1908",
+          "rank": "SPECIES",
+          "code": "ZOOLOGICAL",
+          "authorship": "Kuwayama, 1908",
+          "genericName": "Diaphorina",
+          "specificEpithet": "citri",
+          "formattedName": "<i>Diaphorina</i> <i>citri</i> Kuwayama, 1908"
+        },
+        "taxonomicStatus": "ACCEPTED",
+        "classification": [
+          {
+            "key": "1",
+            "name": "Animalia",
+            "rank": "KINGDOM"
+          },
+          {
+            "key": "54",
+            "name": "Arthropoda",
+            "rank": "PHYLUM"
+          },
+          {
+            "key": "216",
+            "name": "Insecta",
+            "rank": "CLASS"
+          },
+          {
+            "key": "809",
+            "name": "Hemiptera",
+            "rank": "ORDER"
+          },
+          {
+            "key": "4772043",
+            "name": "Liviidae",
+            "rank": "FAMILY"
+          },
+          {
+            "key": "2013240",
+            "name": "Diaphorina",
+            "rank": "GENUS"
+          },
+          {
+            "key": "2013312",
+            "name": "Diaphorina citri",
+            "rank": "SPECIES"
+          }
+        ],
+        "issues": []
+      }
+    },
+    "taxonKey": 2013312,
+    "kingdomKey": 1,
+    "phylumKey": 54,
+    "classKey": 216,
+    "orderKey": 809,
+    "familyKey": 4772043,
+    "genusKey": 2013240,
+    "speciesKey": 2013312,
+    "acceptedTaxonKey": 2013312,
+    "scientificName": "Diaphorina citri Kuwayama, 1908",
+    "scientificNameAuthorship": "Kuwayama, 1908",
+    "acceptedScientificName": "Diaphorina citri Kuwayama, 1908",
+    "kingdom": "Animalia",
+    "phylum": "Arthropoda",
+    "order": "Hemiptera",
+    "family": "Liviidae",
+    "genus": "Diaphorina",
+    "species": "Diaphorina citri",
+    "genericName": "Diaphorina",
+    "specificEpithet": "citri",
+    "taxonRank": "SPECIES",
+    "taxonomicStatus": "ACCEPTED",
+    "decimalLatitude": 26.2389,
+    "decimalLongitude": 73.0243,
+    "continent": "ASIA",
+    "stateProvince": "Rajasthan",
+    "gadm": {
+      "level0": {
+        "gid": "IND",
+        "name": "India"
+      },
+      "level1": {
+        "gid": "IND.29_1",
+        "name": "Rajasthan"
+      },
+      "level2": {
+        "gid": "IND.29.22_1",
+        "name": "Jodhpur"
+      },
+      "level3": {
+        "gid": "IND.29.22.3_1",
+        "name": "Jodhpur"
+      }
+    },
+    "higherGeography": "Asia; India; Rajasthan; Jodhpur",
+    "year": 1970,
+    "month": 2,
+    "day": 13,
+    "eventDate": "1970-02-13",
+    "startDayOfYear": 44,
+    "endDayOfYear": 44,
+    "issues": [
+      "GEODETIC_DATUM_ASSUMED_WGS84",
+      "COLLECTION_MATCH_NONE",
+      "INSTITUTION_MATCH_FUZZY"
+    ],
+    "modified": "2021-01-31T10:00:03.000+00:00",
+    "lastInterpreted": "2026-03-03T22:58:06.437+00:00",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    "isSequenced": false,
+    "identifiers": [
+      {
+        "identifier": "6561543"
+      }
+    ],
+    "media": [
+      {
+        "type": "StillImage",
+        "format": "image/jpeg",
+        "title": "BMNHE_1264130_9179",
+        "created": "2014-09-19T02:11:22.000+00:00",
+        "license": "http://creativecommons.org/licenses/by/4.0/",
+        "rightsHolder": "The Trustees of the Natural History Museum, London",
+        "identifier": "https://data.nhm.ac.uk/media/90d52930-ffa1-4910-b33e-678163215905"
+      }
+    ],
+    "facts": [],
+    "relations": [],
+    "institutionKey": "1d808a7c-1f9e-4379-9616-edb749ecf10e",
+    "isInCluster": false,
+    "otherCatalogNumbers": "NHMUK:ecatalogue:6561543",
+    "dnaSequenceID": [],
+    "geodeticDatum": "WGS84",
+    "class": "Insecta",
+    "countryCode": "IN",
+    "recordedByIDs": [],
+    "identifiedByIDs": [],
+    "gbifRegion": "ASIA",
+    "country": "India",
+    "publishedByGbifRegion": "EUROPE",
+    "identifier": "6561543",
+    "catalogNumber": "BMNH(E)1264130",
+    "institutionCode": "NHMUK",
+    "dynamicProperties": "{\"subDepartment\": \"Small orders\", \"created\": \"2016-04-27T16:27:11+00:00\", \"determinationNames\": \"Diaphorina citri Kuwayama, 1907\", \"gbifID\": \"1269982200\", \"gbifIssue\": \"MODIFIED_DATE_INVALID | GEODETIC_DATUM_ASSUMED_WGS84 | INSTITUTION_MATCH_FUZZY | COLLECTION_MATCH_NONE | MULTIMEDIA_DATE_INVALID\", \"associatedMediaCount\": 1, \"barcode\": null, \"preservative\": \"Dry - pinned\", \"determinationFiledAs\": null, \"project\": \"Crop Wild Relatives\", \"donorName\": null, \"collectionKind\": null, \"registrationCode\": null, \"chronostratigraphy\": null, \"kindOfCollection\": null, \"kindOfObject\": null, \"lithostratigraphy\": null, \"catalogueDescription\": null, \"expedition\": null, \"collectionName\": null, \"plantDescription\": null, \"vessel\": null, \"clutchSize\": null, \"exsiccata\": null, \"setMark\": null, \"exsiccataNumber\": null, \"currentScientificName\": null, \"suborder\": null, \"superfamily\": null, \"subfamily\": null, \"partType\": null, \"populationCode\": null, \"observedWeight\": null, \"preparationType\": null, \"resuspendedIn\": null, \"extractionMethod\": null, \"totalVolume\": null, \"mine\": null, \"mineralComplex\": null}",
+    "locality": "Jodhpur",
+    "gbifID": "1269982200",
+    "collectionCode": "BMNH(E)",
+    "occurrenceID": "367f690a-ffdd-43cf-80cb-6ad8b06dbd76",
+    "higherClassification": "Arthropoda; Insecta; Hemiptera; Sternorrhyncha; Psylloidea; Liviidae"
+  }
+]

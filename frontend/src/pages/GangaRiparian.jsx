@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, GeoJSON, CircleMarker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, CircleMarker, Popup, Tooltip, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { useSearchParams } from 'react-router-dom';
 import Nav from '../components/Nav';
 import { getUserLocation } from '../utils/location';
 
@@ -135,6 +136,12 @@ const RecenterMap = ({ lat, lon }) => {
 };
 
 const GangaRiparian = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const allowedRiskFilters = ['ALL', 'RED', 'BLUE', 'YELLOW', 'GREEN'];
+    const queryRisk = (searchParams.get('risk') || 'ALL').toUpperCase();
+    const initialRiskFilter = allowedRiskFilters.includes(queryRisk) ? queryRisk : 'ALL';
+
     const [selectedStretch, setSelectedStretch] = useState(null);
     const [location, setLocation] = useState({ lat: 25.435, lon: 81.846 });
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -150,6 +157,42 @@ const GangaRiparian = () => {
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [loading, setLoading] = useState(false);
     const [speciesData, setSpeciesData] = useState(null);
+    const [analysisMode, setAnalysisMode] = useState('city');
+    const [riskFilter, setRiskFilter] = useState(initialRiskFilter);
+    const [cityOptions, setCityOptions] = useState([]);
+    const [selectedCityKey, setSelectedCityKey] = useState(null);
+    const [selectedCityName, setSelectedCityName] = useState('');
+    const [citySearch, setCitySearch] = useState('');
+    const [citySearchError, setCitySearchError] = useState('');
+
+    const fallbackCities = [
+        { key: 'jodhpur', name: 'Jodhpur', lat: 26.2389, lon: 73.0243 },
+        { key: 'jaipur', name: 'Jaipur', lat: 26.9124, lon: 75.7873 },
+        { key: 'udaipur', name: 'Udaipur', lat: 24.5854, lon: 73.7125 },
+        { key: 'ajmer', name: 'Ajmer', lat: 26.4499, lon: 74.6399 },
+        { key: 'kota', name: 'Kota', lat: 25.2138, lon: 75.8648 },
+        { key: 'bikaner', name: 'Bikaner', lat: 28.0229, lon: 73.3119 },
+        { key: 'delhi', name: 'Delhi', lat: 28.6139, lon: 77.2090 },
+        { key: 'lucknow', name: 'Lucknow', lat: 26.8467, lon: 80.9462 },
+        { key: 'kanpur', name: 'Kanpur', lat: 26.4499, lon: 80.3319 },
+        { key: 'varanasi', name: 'Varanasi', lat: 25.3176, lon: 82.9739 },
+        { key: 'patna', name: 'Patna', lat: 25.5941, lon: 85.1376 },
+        { key: 'kolkata', name: 'Kolkata', lat: 22.5726, lon: 88.3639 }
+    ];
+
+    const applyRiskFilter = (nextRisk) => {
+        const normalized = allowedRiskFilters.includes(nextRisk) ? nextRisk : 'ALL';
+        setRiskFilter(normalized);
+
+        const nextParams = new URLSearchParams(searchParams);
+        if (normalized === 'ALL') {
+            nextParams.delete('risk');
+        } else {
+            nextParams.set('risk', normalized);
+        }
+
+        setSearchParams(nextParams, { replace: true });
+    };
 
     const fileInputRef = useRef(null);
     const cameraInputRef = useRef(null);
@@ -161,6 +204,36 @@ const GangaRiparian = () => {
             })
             .catch(() => {});
     }, []);
+
+    useEffect(() => {
+        const loadCities = async () => {
+            try {
+                const response = await fetch(`${API_URL}/satellite/cities`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (Array.isArray(data.cities) && data.cities.length > 0) {
+                        setCityOptions(data.cities);
+                        return;
+                    }
+                }
+            } catch {
+                // Use fallback when API list is unavailable.
+            }
+
+            setCityOptions(fallbackCities);
+        };
+
+        loadCities();
+    }, []);
+
+    useEffect(() => {
+        const nextQueryRisk = (searchParams.get('risk') || 'ALL').toUpperCase();
+        const normalized = allowedRiskFilters.includes(nextQueryRisk) ? nextQueryRisk : 'ALL';
+
+        if (normalized !== riskFilter) {
+            setRiskFilter(normalized);
+        }
+    }, [searchParams, riskFilter]);
 
     // Fetch buffer zone data from API
     useEffect(() => {
@@ -206,8 +279,140 @@ const GangaRiparian = () => {
         }
     };
 
+    const fetchCitySpeciesData = async (city) => {
+        setLoading(true);
+        setCitySearchError('');
+        try {
+            const isCustomCity = city?.key?.startsWith('custom-');
+            const payload = isCustomCity
+                ? {
+                    lat: city.lat,
+                    lon: city.lon,
+                    cityName: city.name,
+                    radius: bufferRadius,
+                    majorSpeciesOnly: false
+                }
+                : {
+                    city: city.key,
+                    radius: bufferRadius,
+                    majorSpeciesOnly: false
+                };
+
+            const response = await fetch(`${API_URL}/satellite/city/species`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setSpeciesData(data);
+                setSelectedStretch(null);
+                setSelectedCityKey(city.key);
+                setSelectedCityName(city.name);
+                setLocation({ lat: city.lat, lon: city.lon });
+                setStep(1);
+                setBufferData(prev => data.buffer?.geojson ? { ...prev, buffer: data.buffer } : prev);
+            } else {
+                const errorResult = await response.json().catch(() => ({}));
+                setCitySearchError(errorResult.error || 'City analysis failed. Please try another city.');
+            }
+        } catch {
+            setSpeciesData(null);
+            setCitySearchError('City search failed. Check connection and try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchCityByNameFromBackend = async (cityQuery) => {
+        setLoading(true);
+        setCitySearchError('');
+
+        try {
+            const response = await fetch(`${API_URL}/satellite/city/species`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    city: cityQuery,
+                    radius: bufferRadius,
+                    majorSpeciesOnly: false
+                })
+            });
+
+            if (!response.ok) {
+                const errorResult = await response.json().catch(() => ({}));
+                setCitySearchError(errorResult.error || 'City not found. Try another city name.');
+                return;
+            }
+
+            const data = await response.json();
+            setSpeciesData(data);
+            setSelectedStretch(null);
+            setSelectedCityKey(`search-${cityQuery.toLowerCase()}`);
+            setSelectedCityName(data?.region?.name || cityQuery);
+
+            const nextLat = Number(data?.region?.lat);
+            const nextLon = Number(data?.region?.lon);
+            if (Number.isFinite(nextLat) && Number.isFinite(nextLon)) {
+                setLocation({ lat: nextLat, lon: nextLon });
+            }
+
+            setStep(1);
+            setBufferData(prev => data.buffer?.geojson ? { ...prev, buffer: data.buffer } : prev);
+        } catch {
+            setCitySearchError('City search failed. Check connection and try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCitySearch = async () => {
+        const query = citySearch.trim();
+
+        if (!query) {
+            setCitySearchError('Please enter a city name.');
+            return;
+        }
+
+        const cities = cityOptions.length > 0 ? cityOptions : fallbackCities;
+        const directMatch = cities.find((city) => city.name.toLowerCase() === query.toLowerCase())
+            || cities.find((city) => city.name.toLowerCase().includes(query.toLowerCase()));
+
+        if (directMatch) {
+            await fetchCitySpeciesData(directMatch);
+            return;
+        }
+
+        await fetchCityByNameFromBackend(query);
+    };
+
+    const switchAnalysisMode = (nextMode) => {
+        if (nextMode === analysisMode) {
+            return;
+        }
+
+        setAnalysisMode(nextMode);
+        setSelectedMarker(null);
+        setSpeciesData(null);
+        setStep(1);
+
+        if (nextMode === 'riparian') {
+            setSelectedCityKey(null);
+            setSelectedCityName('');
+            setCitySearchError('');
+        } else {
+            setSelectedStretch(null);
+            setUploadedImage(null);
+            setShowCamera(false);
+            setAnalysisResult(null);
+        }
+    };
+
     const handleStretchSelect = (stretch) => {
         setSelectedStretch(stretch);
+        setSelectedCityKey(null);
+        setSelectedCityName('');
         setLocation({ lat: stretch.lat, lon: stretch.lon });
         setAnalysisResult(null);
         setStep(2);
@@ -297,6 +502,53 @@ const GangaRiparian = () => {
             </div>
         );
     };
+
+    const getSpeciesRiskKey = (item) => {
+        if (item?.riskLevel && RISK_COLORS[item.riskLevel]) {
+            return item.riskLevel;
+        }
+
+        const status = (item?.iucnStatus || '').toUpperCase();
+
+        if (status.includes('CR')) return 'RED';
+        if (status.includes('EN')) return 'BLUE';
+        if (status.includes('VU')) return 'YELLOW';
+        return 'GREEN';
+    };
+
+    const getFeatureRiskKey = (feature) => {
+        const direct = feature?.properties?.riskLevel;
+        if (direct && RISK_COLORS[direct]) {
+            return direct;
+        }
+
+        const fallbackStatus = feature?.properties?.iucnStatus || '';
+        return getSpeciesRiskKey({ iucnStatus: fallbackStatus });
+    };
+
+    const getFeatureCount = (feature) => {
+        const rawCount = Number(
+            feature?.properties?.individualCount
+            ?? feature?.properties?.occurrenceCount
+            ?? 1
+        );
+
+        if (!Number.isFinite(rawCount) || rawCount < 1) {
+            return 1;
+        }
+
+        return Math.round(rawCount);
+    };
+
+    const filteredSpeciesRows = (speciesData?.species?.data || []).filter((item) => {
+        if (riskFilter === 'ALL') return true;
+        return getSpeciesRiskKey(item) === riskFilter;
+    });
+
+    const filteredGeoFeatures = (speciesData?.geojson?.features || []).filter((feature) => {
+        if (riskFilter === 'ALL') return true;
+        return getFeatureRiskKey(feature) === riskFilter;
+    });
 
     return (
         <div className="text-white/90 font-sans min-h-screen bg-bg-gradient-start">
@@ -413,14 +665,15 @@ const GangaRiparian = () => {
                             ))}
 
                             {/* Satellite Species Markers */}
-                            {showSpecies && speciesData?.geojson?.features?.map((feature, index) => {
+                            {showSpecies && filteredGeoFeatures.map((feature, index) => {
                                 const [lon, lat] = feature.geometry.coordinates;
-                                const { riskLevel, scientificName, commonName } = feature.properties;
+                                const { riskLevel, scientificName, commonName, localName, hindiName } = feature.properties;
+                                const markerCount = getFeatureCount(feature);
                                 return (
                                     <CircleMarker
                                         key={feature.properties.id || index}
                                         center={[lat, lon]}
-                                        radius={majorSpeciesOnly ? 10 : 6}
+                                        radius={Math.min(14, (majorSpeciesOnly ? 9 : 7) + Math.log2(markerCount + 1))}
                                         pathOptions={{
                                             color: RISK_COLORS[riskLevel] || RISK_COLORS.GREEN,
                                             fillColor: RISK_COLORS[riskLevel] || RISK_COLORS.GREEN,
@@ -431,10 +684,16 @@ const GangaRiparian = () => {
                                             click: () => setSelectedMarker(feature.properties)
                                         }}
                                     >
+                                        <Tooltip direction="top" permanent>
+                                            <span className="text-[10px] font-bold">{markerCount}</span>
+                                        </Tooltip>
                                         <Popup>
                                             <div className="p-2 min-w-[120px]">
-                                                <h4 className="font-bold text-xs">{commonName || scientificName}</h4>
+                                                <h4 className="font-bold text-xs">{localName || commonName || scientificName}</h4>
+                                                <p className="text-[10px] text-gray-800">Hindi: {hindiName || 'N/A'}</p>
+                                                <p className="text-[10px] text-gray-700">{commonName || scientificName}</p>
                                                 <p className="text-[10px] text-gray-600">{scientificName}</p>
+                                                <p className="text-[10px] text-gray-700 mt-1">Count: <span className="font-bold">{markerCount}</span></p>
                                                 <span 
                                                     className="inline-block mt-1 px-2 py-0.5 text-[10px] rounded-full"
                                                     style={{ 
@@ -509,34 +768,147 @@ const GangaRiparian = () => {
                 {/* Analyze Button */}
                 {!step || step === 1 ? (
                     <div className="mb-4">
-                        <button
-                            onClick={fetchSpeciesData}
-                            disabled={loading}
-                            className="w-full glass-panel bg-neon-green hover:bg-neon-green/90 text-black font-black h-12 flex items-center justify-center gap-2 transition-all uppercase tracking-widest text-xs sm:text-sm rounded-xl"
-                        >
-                            {loading ? (<><span className="material-symbols-outlined animate-spin">sync</span>Analyzing...</>) : (<><span className="material-symbols-outlined">satellite</span>Satellite Analysis</>)}
-                        </button>
+                        <div className="flex items-center gap-2 mb-2">
+                            <button
+                                onClick={() => switchAnalysisMode('city')}
+                                className={`flex-1 h-10 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all ${
+                                    analysisMode === 'city'
+                                        ? 'bg-cyan-500/20 border-cyan-300 text-cyan-100'
+                                        : 'bg-white/5 border-white/20 text-white/60 hover:bg-white/10'
+                                }`}
+                            >
+                                City Species
+                            </button>
+                            <button
+                                onClick={() => switchAnalysisMode('riparian')}
+                                className={`flex-1 h-10 rounded-xl border text-xs font-bold uppercase tracking-wider transition-all ${
+                                    analysisMode === 'riparian'
+                                        ? 'bg-neon-green/20 border-neon-green/60 text-neon-green'
+                                        : 'bg-white/5 border-white/20 text-white/60 hover:bg-white/10'
+                                }`}
+                            >
+                                Riparian Analysis
+                            </button>
+                        </div>
+
+                        {analysisMode === 'riparian' && (
+                            <button
+                                onClick={fetchSpeciesData}
+                                disabled={loading}
+                                className="w-full glass-panel bg-neon-green hover:bg-neon-green/90 text-black font-black h-12 flex items-center justify-center gap-2 transition-all uppercase tracking-widest text-xs sm:text-sm rounded-xl mb-2"
+                            >
+                                {loading ? (<><span className="material-symbols-outlined animate-spin">sync</span>Analyzing...</>) : (<><span className="material-symbols-outlined">satellite</span>Satellite Analysis</>)}
+                            </button>
+                        )}
+
+                        {analysisMode === 'city' && (
+                            <div className="glass-panel border border-cyan-400/40 bg-cyan-500/10 rounded-xl p-2">
+                                <p className="text-[10px] uppercase tracking-wider text-cyan-100/80 font-bold mb-2">City Species</p>
+                                <div className="flex items-center gap-2">
+                                    <input
+                                        type="text"
+                                        value={citySearch}
+                                        onChange={(e) => setCitySearch(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                e.preventDefault();
+                                                handleCitySearch();
+                                            }
+                                        }}
+                                        list="city-search-options"
+                                        placeholder="Search any city (e.g. Indore)"
+                                        className="flex-1 bg-black/20 border border-cyan-400/30 rounded-lg px-2 py-1.5 text-[11px] text-white placeholder:text-cyan-100/40 focus:outline-none focus:border-cyan-300"
+                                    />
+                                    <datalist id="city-search-options">
+                                        {(cityOptions.length > 0 ? cityOptions : fallbackCities).map((city) => (
+                                            <option key={city.key} value={city.name} />
+                                        ))}
+                                    </datalist>
+                                    <button
+                                        onClick={handleCitySearch}
+                                        disabled={loading}
+                                        className="px-3 py-1.5 rounded-lg text-[10px] font-bold border bg-cyan-400/30 border-cyan-300 text-white hover:bg-cyan-400/40 transition-all"
+                                    >
+                                        Search
+                                    </button>
+                                </div>
+                                {selectedCityKey && (
+                                    <p className="mt-1 text-[10px] text-cyan-100/70">Selected: {selectedCityName || selectedCityKey}</p>
+                                )}
+                                {citySearchError && (
+                                    <p className="mt-1 text-[10px] text-red-300">{citySearchError}</p>
+                                )}
+                            </div>
+                        )}
                     </div>
                 ) : null}
 
                 {/* Species Data Summary */}
-                {speciesData && step === 1 && (
+                {analysisMode === 'city' && speciesData && step === 1 && (
                     <div className="mb-4">
                         <div className="glass-panel p-4 rounded-2xl">
                             <div className="flex items-center justify-between mb-2">
-                                <span className="text-xs font-bold uppercase tracking-wider text-white/60">Satellite Biodiversity</span>
+                                <span className="text-xs font-bold uppercase tracking-wider text-white/60">{speciesData?.region?.name || 'Satellite Biodiversity'}</span>
                                 <span className="text-xl font-black text-neon-green">{speciesData.species?.total || 0}</span>
                             </div>
                             <p className="text-[9px] text-white/40 mb-2">
                                 Buffer: {speciesData.buffer?.radiusKm || bufferRadius}km | Area: {(speciesData.buffer?.areaKm2 || 0).toFixed(0)} km²
                             </p>
                             {getRiskSummary()}
+
+                            <div className="mt-3 flex flex-wrap gap-1.5">
+                                {[
+                                    { key: 'ALL', label: 'All', count: speciesData?.species?.total || 0 },
+                                    { key: 'RED', label: 'Critical', count: speciesData?.species?.breakdown?.red || 0 },
+                                    { key: 'BLUE', label: 'Endangered', count: speciesData?.species?.breakdown?.blue || 0 },
+                                    { key: 'YELLOW', label: 'Vulnerable', count: speciesData?.species?.breakdown?.yellow || 0 },
+                                    { key: 'GREEN', label: 'Stable', count: speciesData?.species?.breakdown?.green || 0 }
+                                ].map((entry) => (
+                                    <button
+                                        key={entry.key}
+                                        onClick={() => applyRiskFilter(entry.key)}
+                                        className={`px-2 py-1 rounded-lg text-[10px] font-bold border transition-all ${
+                                            riskFilter === entry.key
+                                                ? 'bg-neon-green/20 border-neon-green/60 text-neon-green'
+                                                : 'bg-white/5 border-white/20 text-white/60 hover:bg-white/10'
+                                        }`}
+                                    >
+                                        {entry.label} ({entry.count})
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="mt-3 border-t border-white/10 pt-3">
+                                <p className="text-[10px] font-bold text-white/60 uppercase tracking-wider mb-2">All Species (Hindi + Local + Risk Level)</p>
+                                <div className="max-h-56 overflow-y-auto space-y-1 pr-1">
+                                    {filteredSpeciesRows.map((item, idx) => {
+                                        const riskKey = getSpeciesRiskKey(item);
+
+                                        return (
+                                            <div key={`${item.scientificName || 'species'}-${idx}`} className="flex items-center justify-between gap-2 bg-white/5 rounded-lg px-2 py-1.5">
+                                                <div className="min-w-0">
+                                                    <p className="text-xs text-white truncate">{item.localName || item.commonName || item.scientificName || 'Unknown Species'}</p>
+                                                    <p className="text-[10px] text-cyan-200 truncate">Hindi: {item.hindiName || 'N/A'}</p>
+                                                    <p className="text-[10px] text-white/60 truncate">{item.commonName || item.scientificName || 'N/A'}</p>
+                                                    <p className="text-[10px] text-white/40 italic truncate">{item.scientificName || 'N/A'}</p>
+                                                </div>
+                                                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap" style={{ backgroundColor: RISK_COLORS[riskKey] || RISK_COLORS.GREEN, color: riskKey === 'YELLOW' ? '#000' : '#fff' }}>
+                                                    {RISK_LABELS[riskKey] || 'Stable'}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
+                                    {filteredSpeciesRows.length === 0 && (
+                                        <div className="text-center py-3 text-xs text-white/40">No species found for selected risk level</div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}
 
                 {/* Selected Marker Details */}
-                {selectedMarker && (
+                {analysisMode === 'city' && selectedMarker && (
                     <div className="mb-4">
                         <div className="glass-panel p-3 rounded-xl border border-neon-green/30">
                             <div className="flex items-center justify-between mb-1">
@@ -545,7 +917,9 @@ const GangaRiparian = () => {
                                     <span className="material-symbols-outlined text-[14px]">close</span>
                                 </button>
                             </div>
-                            <p className="font-bold text-neon-green text-sm">{selectedMarker.commonName}</p>
+                            <p className="font-bold text-neon-green text-sm">{selectedMarker.localName || selectedMarker.commonName}</p>
+                            <p className="text-[10px] text-cyan-200">Hindi: {selectedMarker.hindiName || 'N/A'}</p>
+                            <p className="text-[9px] text-white/70">{selectedMarker.commonName}</p>
                             <p className="text-[9px] text-white/60 italic">{selectedMarker.scientificName}</p>
                             <span 
                                 className="inline-block mt-1 px-2 py-0.5 text-[9px] rounded-full"
@@ -561,7 +935,7 @@ const GangaRiparian = () => {
                 )}
 
                 {/* Step 1: Select Stretch */}
-                {step === 1 && (
+                {step === 1 && analysisMode === 'riparian' && (
                     <div>
                         <p className="text-xs sm:text-sm text-white/60 text-center mb-3">
                             Tap a Ganga stretch to analyze water quality

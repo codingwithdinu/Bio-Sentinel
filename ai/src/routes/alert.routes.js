@@ -57,10 +57,10 @@ router.get('/', async (req, res) => {
                 category: doc.category || 'General',
                 title: doc.title,
                 description: doc.description,
-                timestamp: doc.createdAt || new Date().toISOString(),
+                timestamp: doc.timestamp || doc.createdAt || new Date().toISOString(),
                 location: doc.location,
-                lat: doc.lat,
-                lon: doc.lon,
+                lat: Number.isFinite(Number(doc.lat)) ? Number(doc.lat) : null,
+                lon: Number.isFinite(Number(doc.lon)) ? Number(doc.lon) : null,
                 confidence: doc.confidence || 85,
                 source: doc.source || 'User Report',
                 urgency: doc.urgency || 'MODERATE',
@@ -124,6 +124,7 @@ router.post('/process', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const alertData = req.body;
+        const timestamp = normalizeAlertTimestamp(alertData.alertTime || alertData.timestamp);
         
         // Create the alert object
         const newAlert = {
@@ -132,6 +133,7 @@ router.post('/', async (req, res) => {
             category: alertData.category || 'General',
             title: alertData.title,
             description: alertData.description,
+            timestamp,
             location: alertData.location,
             lat: alertData.lat || 0,
             lon: alertData.lon || 0,
@@ -202,6 +204,20 @@ function mapSeverityToLevel(severity) {
         'low': 'LOW'
     };
     return mapping[severity?.toLowerCase()] || 'MODERATE';
+}
+
+function normalizeAlertTimestamp(value) {
+    if (!value) {
+        return new Date().toISOString();
+    }
+
+    const parsed = new Date(value);
+
+    if (Number.isNaN(parsed.getTime())) {
+        return new Date().toISOString();
+    }
+
+    return parsed.toISOString();
 }
 
 // Helper function to generate recommended actions

@@ -36,23 +36,42 @@ export const AuthProvider = ({ children }) => {
     // Listen to Firebase Auth state changes
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-            if (firebaseUser) {
-                // Fetch custom profile from Firestore and merge with Firebase Auth user
-                const firestoreProfile = await getUserProfile(firebaseUser.uid);
-                const mergedUser = {
-                    uid: firebaseUser.uid,
-                    email: firebaseUser.email,
-                    displayName: firebaseUser.displayName,
-                    photoURL: firebaseUser.photoURL,
-                    ...(firestoreProfile || {})
-                };
-                setUser(mergedUser);
-                setProfileComplete(checkProfileComplete(mergedUser));
-            } else {
-                setUser(null);
-                setProfileComplete(false);
+            try {
+                if (firebaseUser) {
+                    // Fetch custom profile from Firestore and merge with Firebase Auth user
+                    const firestoreProfile = await getUserProfile(firebaseUser.uid);
+                    const mergedUser = {
+                        uid: firebaseUser.uid,
+                        email: firebaseUser.email,
+                        displayName: firebaseUser.displayName,
+                        photoURL: firebaseUser.photoURL,
+                        ...(firestoreProfile || {})
+                    };
+                    setUser(mergedUser);
+                    setProfileComplete(checkProfileComplete(mergedUser));
+                } else {
+                    setUser(null);
+                    setProfileComplete(false);
+                }
+            } catch (error) {
+                console.error('Auth profile load failed:', error);
+                // Fail open: keep session usable even if profile fetch fails.
+                if (firebaseUser) {
+                    const fallbackUser = {
+                        uid: firebaseUser.uid,
+                        email: firebaseUser.email,
+                        displayName: firebaseUser.displayName,
+                        photoURL: firebaseUser.photoURL
+                    };
+                    setUser(fallbackUser);
+                    setProfileComplete(false);
+                } else {
+                    setUser(null);
+                    setProfileComplete(false);
+                }
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         });
 
         // Cleanup subscription on unmount

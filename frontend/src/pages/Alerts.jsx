@@ -260,8 +260,30 @@ const Alerts = () => {
     const [notificationPermission, setNotificationPermission] = useState('default');
     const [newAlertsCount, setNewAlertsCount] = useState(0);
     const [dataSource, setDataSource] = useState('mock');
+    const [refreshing, setRefreshing] = useState(false);
+    const [refreshToast, setRefreshToast] = useState('');
+    const [refreshToastType, setRefreshToastType] = useState('success');
     
     const socketRef = useRef(null);
+
+    const sortAlertsByLatest = (items) => {
+        return [...items].sort((left, right) => {
+            const leftTime = new Date(left.timestamp || left.createdAt || 0).getTime();
+            const rightTime = new Date(right.timestamp || right.createdAt || 0).getTime();
+            return rightTime - leftTime;
+        });
+    };
+
+    const toValidNumber = (value) => {
+        const parsed = Number(value);
+        return Number.isFinite(parsed) ? parsed : null;
+    };
+
+    const hasValidCoords = (item) => {
+        const lat = toValidNumber(item?.lat);
+        const lon = toValidNumber(item?.lon);
+        return lat !== null && lon !== null;
+    };
 
     // Initialize WebSocket connection and fetch data
     useEffect(() => {
@@ -279,12 +301,21 @@ const Alerts = () => {
             console.log('Connected to WebSocket server');
             socket.emit('join-alerts');
         });
+
+        socket.on('alerts-update', (incomingAlerts) => {
+            console.log('Alerts list updated:', incomingAlerts?.length || 0);
+
+            if (Array.isArray(incomingAlerts) && incomingAlerts.length > 0) {
+                setAlerts(sortAlertsByLatest(incomingAlerts));
+                setDataSource('api');
+            }
+        });
         
         socket.on('new-alert', (alert) => {
             console.log('New alert received:', alert);
             
             // Add new alert to the list
-            setAlerts(prev => [alert, ...prev]);
+            setAlerts(prev => sortAlertsByLatest([alert, ...prev]));
             
             // Show push notification
             showPushNotification('New Alert!', `${alert.title} - ${alert.description.substring(0, 100)}...`);
@@ -322,7 +353,7 @@ const Alerts = () => {
             if (alertsResponse.ok) {
                 const alertsData = await alertsResponse.json();
                 if (alertsData.length > 0) {
-                    setAlerts(alertsData);
+                    setAlerts(sortAlertsByLatest(alertsData));
                     setDataSource('api');
                 }
             }
@@ -362,6 +393,28 @@ const Alerts = () => {
             setNotificationPermission(Notification.permission);
         }
     };
+
+    const handleManualRefresh = async () => {
+        if (refreshing) return;
+
+        setRefreshing(true);
+        try {
+            await fetchRealData();
+            setRefreshToast('Alerts updated');
+            setRefreshToastType('success');
+        } catch {
+            setRefreshToast('Refresh failed. Try again.');
+            setRefreshToastType('error');
+        } finally {
+            setRefreshing(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!refreshToast) return;
+        const timer = setTimeout(() => setRefreshToast(''), 2200);
+        return () => clearTimeout(timer);
+    }, [refreshToast]);
 
     const showPushNotification = (title, body) => {
         if (notificationPermission === 'granted') {
@@ -404,7 +457,7 @@ const Alerts = () => {
                 const newReport = {
                     id: result.alert.id,
                     ...reportData,
-                    timestamp: result.alert.createdAt,
+                    timestamp: result.alert.timestamp || result.alert.createdAt,
                     status: 'SUBMITTED',
                     priority: reportData.severity === 'critical' ? 'HIGH' : 'MODERATE'
                 };
@@ -424,7 +477,11 @@ const Alerts = () => {
     };
 
     const formatTimestamp = (timestamp) => {
+        if (!timestamp) return 'Unknown';
+
         const date = new Date(timestamp);
+        if (Number.isNaN(date.getTime())) return 'Unknown';
+
         const now = new Date();
         const diff = now - date;
         const minutes = Math.floor(diff / 60000);
@@ -435,6 +492,18 @@ const Alerts = () => {
         if (minutes < 60) return `${minutes}m ago`;
         if (hours < 24) return `${hours}h ago`;
         return `${days}d ago`;
+    };
+
+    const formatExactTimestamp = (timestamp) => {
+        if (!timestamp) return 'Unknown';
+
+        const date = new Date(timestamp);
+        if (Number.isNaN(date.getTime())) return 'Unknown';
+
+        return new Intl.DateTimeFormat('en-IN', {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+        }).format(date);
     };
 
     const getLevelColor = (level) => {
@@ -500,6 +569,11 @@ const Alerts = () => {
 
                 {/* Header */}
                 <div className="pt-4 pb-2">
+                    {refreshToast && (
+                        <div className={`mb-3 px-3 py-2 rounded-lg text-xs font-semibold border ${refreshToastType === 'success' ? 'bg-green-500/15 text-green-200 border-green-400/30' : 'bg-red-500/15 text-red-200 border-red-400/30'}`}>
+                            {refreshToast}
+                        </div>
+                    )}
                     <div className="flex items-center justify-between mb-4">
                         <div>
                             <h2 className="frosted-text text-lg font-bold tracking-tight">Bio Sentinal</h2>
@@ -511,6 +585,18 @@ const Alerts = () => {
                                     +{newAlertsCount} New
                                 </span>
                             )}
+                            <button
+                                onClick={handleManualRefresh}
+                                disabled={refreshing}
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                                    refreshing
+                                        ? 'bg-white/10 border-white/20 text-white/50 cursor-not-allowed'
+                                        : 'bg-white/5 border-white/20 text-white/80 hover:bg-white/10'
+                                }`}
+                            >
+                                <span className="material-symbols-outlined text-sm">refresh</span>
+                                {refreshing ? 'Refreshing...' : 'Refresh'}
+                            </button>
                             <button 
                                 onClick={notificationPermission === 'granted' ? null : requestNotificationPermission}
                                 className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
@@ -607,10 +693,10 @@ const Alerts = () => {
                                 })} />
                                 
                                 {/* Alert Markers */}
-                                {activeTab === 'alerts' && alerts.map(alert => (
+                                {activeTab === 'alerts' && alerts.filter(hasValidCoords).map(alert => (
                                     <Marker 
                                         key={alert.id}
-                                        position={[alert.lat, alert.lon]}
+                                        position={[Number(alert.lat), Number(alert.lon)]}
                                         icon={createAlertIcon(alert.type, alert.level)}
                                         eventHandlers={{
                                             click: () => setSelectedAlert(alert)
@@ -634,10 +720,10 @@ const Alerts = () => {
                                 ))}
                                 
                                 {/* Danger Zone Markers */}
-                                {activeTab === 'danger' && dangerZones.map(zone => (
+                                {activeTab === 'danger' && dangerZones.filter(hasValidCoords).map(zone => (
                                     <Marker 
                                         key={zone.id}
-                                        position={[zone.lat, zone.lon]}
+                                        position={[Number(zone.lat), Number(zone.lon)]}
                                         icon={createAlertIcon('DANGER', zone.riskLevel)}
                                         eventHandlers={{
                                             click: () => setSelectedAlert(zone)
@@ -835,6 +921,7 @@ const Alerts = () => {
                     getLevelColor={getLevelColor}
                     getLevelBadge={getLevelBadge}
                     formatTimestamp={formatTimestamp}
+                    formatExactTimestamp={formatExactTimestamp}
                 />
             )}
 
@@ -887,8 +974,11 @@ const AlertCard = ({ alert, onClick, getLevelColor, getLevelBadge, formatTimesta
 };
 
 // Alert Detail Modal Component
-const AlertDetailModal = ({ alert, onClose, getLevelColor, getLevelBadge, formatTimestamp }) => {
+const AlertDetailModal = ({ alert, onClose, getLevelColor, getLevelBadge, formatTimestamp, formatExactTimestamp }) => {
     const badge = getLevelBadge(alert.level);
+    const parsedLat = Number(alert?.lat);
+    const parsedLon = Number(alert?.lon);
+    const hasCoords = Number.isFinite(parsedLat) && Number.isFinite(parsedLon);
     
     return (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[1000] p-4" onClick={onClose}>
@@ -929,11 +1019,12 @@ const AlertDetailModal = ({ alert, onClose, getLevelColor, getLevelBadge, format
                         </div>
                         <div className="bg-white/5 rounded-lg p-2">
                             <span className="text-white/40 block mb-1">Coordinates</span>
-                            <span className="text-white">{alert.lat?.toFixed(4)}, {alert.lon?.toFixed(4)}</span>
+                            <span className="text-white">{hasCoords ? `${parsedLat.toFixed(4)}, ${parsedLon.toFixed(4)}` : 'Not available'}</span>
                         </div>
                         <div className="bg-white/5 rounded-lg p-2">
                             <span className="text-white/40 block mb-1">Timestamp</span>
-                            <span className="text-white">{formatTimestamp(alert.timestamp)}</span>
+                            <span className="text-white block">{formatTimestamp(alert.timestamp)}</span>
+                            <span className="text-white/50 text-[11px]">{formatExactTimestamp(alert.timestamp)}</span>
                         </div>
                         <div className="bg-white/5 rounded-lg p-2">
                             <span className="text-white/40 block mb-1">Confidence</span>
@@ -984,11 +1075,18 @@ const AlertDetailModal = ({ alert, onClose, getLevelColor, getLevelBadge, format
 
 // Report Modal Component
 const ReportModal = ({ onClose, onSubmit, getLevelColor }) => {
+    const getDefaultAlertTime = () => {
+        const now = new Date();
+        const offset = now.getTimezoneOffset();
+        return new Date(now.getTime() - offset * 60000).toISOString().slice(0, 16);
+    };
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         category: 'General',
         severity: 'moderate',
+        alertTime: getDefaultAlertTime(),
         location: '',
         lat: 0,
         lon: 0
@@ -1066,6 +1164,17 @@ const ReportModal = ({ onClose, onSubmit, getLevelColor }) => {
                             onChange={e => setFormData({...formData, description: e.target.value})}
                             className="w-full bg-white/5 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:border-neon-green outline-none h-24 resize-none"
                             placeholder="Provide detailed information about your observation..."
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-xs text-white/60 mb-1">Alert Time</label>
+                        <input
+                            type="datetime-local"
+                            value={formData.alertTime}
+                            onChange={e => setFormData({...formData, alertTime: e.target.value})}
+                            className="w-full bg-white/5 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:border-neon-green outline-none"
                             required
                         />
                     </div>

@@ -20,6 +20,7 @@ import ResearcherDashboard from './pages/ResearcherDashboard';
 import CommunityDashboard from './pages/CommunityDashboard';
 import Satellite from './pages/Satellite';
 import GangaRiparian from './pages/GangaRiparian';
+import EndangeredSpecies from './pages/EndangeredSpecies';
 
 // Protected Route component
 const ProtectedRoute = ({ children, requireAuth = true }) => {
@@ -113,34 +114,36 @@ function App() {
     return (
         <div className="App">
             <ThemeToggle />
-            <AuthProvider>
-                <Router>
-                    <Routes>
-                        {/* Public Routes */}
-                        <Route path="/" element={<Landing />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/map" element={<Map />} />
-                        <Route path="/species/:id" element={<SpeciesDetail />} />
-                        <Route path="/alerts" element={<Alerts />} />
-                        <Route path="/report" element={<Report />} />
-                        <Route path="/satellite" element={<Satellite />} />
-                        <Route path="/riparian" element={<GangaRiparian />} />
-                        <Route path="/team" element={<Team />} />
+            <Router>
+                <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="/map"
+                        element={<Map />}
+                    />
+                    <Route path="/species/:id" element={<SpeciesDetail />} />
+                    <Route path="/alerts" element={<Alerts />} />
+                    <Route path="/report" element={<Report />} />
+                    <Route path="/satellite" element={<Satellite />} />
+                    <Route path="/riparian" element={<GangaRiparian />} />
+                    <Route path="/endangered-species" element={<EndangeredSpecies />} />
+                    <Route path="/team" element={<Team />} />
 
-                        {/* Auth Routes */}
-                        <Route path="/profile-setup" element={<ProfileSetupPage />} />
+                    {/* Auth Routes */}
+                    <Route path="/profile-setup" element={<ProfileSetupPage />} />
 
-                        {/* Dashboard Routes */}
-                        <Route path="/dashboard" element={<DashboardRoute />} />
-                        <Route path="/dashboard/student" element={<StudentDashboardPage />} />
-                        <Route path="/dashboard/researcher" element={<ResearcherDashboardPage />} />
-                        <Route path="/dashboard/community" element={<CommunityDashboardPage />} />
+                    {/* Dashboard Routes */}
+                    <Route path="/dashboard" element={<DashboardRoute />} />
+                    <Route path="/dashboard/student" element={<StudentDashboardPage />} />
+                    <Route path="/dashboard/researcher" element={<ResearcherDashboardPage />} />
+                    <Route path="/dashboard/community" element={<CommunityDashboardPage />} />
 
-                        {/* Catch all - redirect to home */}
-                        <Route path="*" element={<Navigate to="/" replace />} />
-                    </Routes>
-                </Router>
-            </AuthProvider>
+                    {/* Catch all - redirect to home */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+            </Router>
         </div>
     );
 }

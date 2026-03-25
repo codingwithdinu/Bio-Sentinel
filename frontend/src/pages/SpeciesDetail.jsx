@@ -31,6 +31,34 @@ const conservationDict = {
     "NE": { label: "Not Evaluated", color: "bg-slate-600 text-slate-300 border-slate-500/50", desc: "This species has not yet been assessed." }
 };
 
+const toDisplayText = (value) => {
+    if (value === null || value === undefined) return "";
+    if (typeof value === "string") return value;
+    if (typeof value === "number" || typeof value === "boolean") return String(value);
+    if (Array.isArray(value)) {
+        return value.map((v) => toDisplayText(v)).filter(Boolean).join(", ");
+    }
+    if (typeof value === "object") {
+        return Object.entries(value)
+            .map(([k, v]) => `${k}: ${toDisplayText(v)}`)
+            .join(", ");
+    }
+    return String(value);
+};
+
+const toDisplayList = (value) => {
+    if (Array.isArray(value)) {
+        return value.map((item) => toDisplayText(item)).filter(Boolean);
+    }
+    if (typeof value === "string" && value.trim()) {
+        return [value.trim()];
+    }
+    if (value && typeof value === "object") {
+        return Object.entries(value).map(([k, v]) => `${k}: ${toDisplayText(v)}`);
+    }
+    return [];
+};
+
 const SpeciesDetail = () => {
     const { id } = useParams();
 
@@ -83,7 +111,11 @@ const SpeciesDetail = () => {
                     setAiData({
                         favourable_climate: "Data currently unavailable via BioSentinel Uplink.",
                         dos_and_donts: ["Do not disturb"],
-                        conservation_methods: ["Monitor local population"]
+                        conservation_methods: ["Monitor local population"],
+                        wiki_summary_en: wikiData?.extract || "English summary unavailable.",
+                        wiki_summary_hi: "हिंदी सारांश उपलब्ध नहीं है।",
+                        key_facts_en: [],
+                        key_facts_hi: []
                     });
                 }
 
@@ -300,14 +332,14 @@ const SpeciesDetail = () => {
                                                 <span className="material-symbols-outlined align-middle mr-2 text-sm">thermostat</span>
                                                 Favourable Environment
                                             </h4>
-                                            <p className="text-white/80 text-sm leading-relaxed">{aiData.favourable_climate}</p>
+                                            <p className="text-white/80 text-sm leading-relaxed">{toDisplayText(aiData.favourable_climate) || "Not available"}</p>
                                         </div>
 
                                         {/* Do's and Don'ts */}
                                         <div className="bg-emerald-900/20 p-4 rounded-xl border border-emerald-500/20">
                                             <h4 className="text-emerald-400 font-bold text-xs uppercase tracking-widest mb-3">Interaction Guidelines</h4>
                                             <ul className="space-y-2">
-                                                {aiData.dos_and_donts?.map((item, i) => (
+                                                {toDisplayList(aiData.dos_and_donts).map((item, i) => (
                                                     <li key={i} className="flex gap-2 text-xs text-emerald-100/80">
                                                         <span className="text-emerald-500">•</span> {item}
                                                     </li>
@@ -319,13 +351,65 @@ const SpeciesDetail = () => {
                                         <div className="bg-blue-900/20 p-4 rounded-xl border border-blue-500/20">
                                             <h4 className="text-blue-400 font-bold text-xs uppercase tracking-widest mb-3">Conservation Strategy</h4>
                                             <ul className="space-y-2">
-                                                {aiData.conservation_methods?.map((item, i) => (
+                                                {toDisplayList(aiData.conservation_methods).map((item, i) => (
                                                     <li key={i} className="flex gap-2 text-xs text-blue-100/80">
                                                         <span className="text-blue-500">•</span> {item}
                                                     </li>
                                                 ))}
                                             </ul>
                                         </div>
+
+                                        <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                                <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-2">Wikipedia Summary (English)</h4>
+                                                <p className="text-xs text-white/75 leading-relaxed">
+                                                    {toDisplayText(aiData.wiki_summary_en) || wikiData?.extract || "English summary unavailable."}
+                                                </p>
+                                                {!!aiData.wiki_source_en && (
+                                                    <a href={aiData.wiki_source_en} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-[11px] text-primary-green hover:underline">
+                                                        Open Source (EN)
+                                                    </a>
+                                                )}
+                                            </div>
+
+                                            <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                                <h4 className="text-white font-bold text-xs uppercase tracking-widest mb-2">Wikipedia Summary (Hindi)</h4>
+                                                <p className="text-xs text-white/75 leading-relaxed">
+                                                    {toDisplayText(aiData.wiki_summary_hi) || "हिंदी सारांश उपलब्ध नहीं है।"}
+                                                </p>
+                                                {!!aiData.wiki_source_hi && (
+                                                    <a href={aiData.wiki_source_hi} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-[11px] text-primary-green hover:underline">
+                                                        Open Source (HI)
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        {(toDisplayList(aiData.key_facts_en).length > 0 || toDisplayList(aiData.key_facts_hi).length > 0) && (
+                                            <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="bg-emerald-900/20 p-4 rounded-xl border border-emerald-500/20">
+                                                    <h4 className="text-emerald-300 font-bold text-xs uppercase tracking-widest mb-2">Key Facts (English)</h4>
+                                                    <ul className="space-y-2">
+                                                        {toDisplayList(aiData.key_facts_en).map((fact, i) => (
+                                                            <li key={`en-${i}`} className="text-xs text-emerald-100/80 flex gap-2">
+                                                                <span className="text-emerald-400">•</span>{fact}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+
+                                                <div className="bg-indigo-900/20 p-4 rounded-xl border border-indigo-500/20">
+                                                    <h4 className="text-indigo-300 font-bold text-xs uppercase tracking-widest mb-2">मुख्य तथ्य (हिंदी)</h4>
+                                                    <ul className="space-y-2">
+                                                        {toDisplayList(aiData.key_facts_hi).map((fact, i) => (
+                                                            <li key={`hi-${i}`} className="text-xs text-indigo-100/80 flex gap-2">
+                                                                <span className="text-indigo-400">•</span>{fact}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
 
                                     </div>
                                 )}
@@ -379,34 +463,6 @@ const SpeciesDetail = () => {
                                     <span className="text-white text-right w-1/2 truncate">
                                         {sighting.stateProvince}, {sighting.country}
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Metadata Card */}
-                        <div className="glass-panel p-6 bg-white/[0.02] border-white/10">
-                            <h4 className="text-[10px] font-bold text-white/40 uppercase mb-4 tracking-[0.2em]">Record Metadata</h4>
-
-                            <div className="space-y-4">
-                                <div>
-                                    <p className="text-[9px] text-white/30 uppercase mb-1">Source Dataset</p>
-                                    <p className="text-xs font-bold text-white leading-tight">
-                                        {sighting.datasetName || "GBIF Backbone Taxonomy"}
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p className="text-[9px] text-white/30 uppercase mb-1">Observed By</p>
-                                    <p className="text-xs font-bold text-primary-green">
-                                        {sighting.recordedBy || "Anonymous Sentinel"}
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p className="text-[9px] text-white/30 uppercase mb-1">Timestamp</p>
-                                    <p className="text-xs font-mono text-white">
-                                        {sighting.eventDate ? new Date(sighting.eventDate).toLocaleString() : "UNKNOWN"}
-                                    </p>
                                 </div>
                             </div>
                         </div>
